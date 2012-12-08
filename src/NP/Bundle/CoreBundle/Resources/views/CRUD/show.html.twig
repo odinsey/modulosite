@@ -1,0 +1,12 @@
+{% extends 'NPCoreBundle::layout.html.twig' %}
+
+{% block content %}
+{% spaceless %}
+<h2>Name : {{ entity }}</h2>
+
+<ul>
+	<li><a href="{{ path(route_edit, { 'id' : entity.id }) }}" >Edit</a></li>
+	<li><a href="{{ path(route_index) }}" >Back</a></li>
+</ul>
+{% endspaceless %}
+{% endblock %}

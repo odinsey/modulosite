@@ -1,0 +1,295 @@
+/*
+ * On AJAX Waiting
+ */
+#ajax-on-loading {
+    background: url("../img/ajax-loader.gif") no-repeat scroll 5px center #FFFFFF;
+    color: black;
+    display: none;
+    height: 26px;
+    line-height: 26px;
+    padding: 0 10px 0 30px;
+    position: fixed;
+    top: 0;
+    z-index: 10001;
+
+    .loading {
+        display: inline;
+    }
+    .error,
+    .success {
+        display: none;
+    }
+    .error {
+        color: @red;
+    }
+}
+
+/**
+ * Multi container of Emails Widget
+ */
+.inline-inputs-email {
+    .email {
+        margin-left: 10px;
+    }
+}
+
+/**
+ * Multi container of Addresses Widget
+ */
+.inline-inputs-address {
+    .further {
+        margin-left: 10px;
+    }
+    .city {
+        margin-top: 10px;
+    }
+}
+
+/**
+ * Multi container of Phones Widget
+ */
+.inline-inputs-phone {
+    .number {
+        margin-left: 10px;
+    }
+}
+
+/**
+ * item's list | Template Medium
+ * 
+ * <div|ol|ul class="list-items medium">
+ *     <div|li class="item">
+ *         <div class="item-meta">
+ *             <span class="name"> ... </span>
+ *             <span class="separator">|</span>
+ *             <span class="date"> ... </span>
+ *             <span class="client-ip"> ... </span>
+ *         </div>
+ *         <div class="item-content"> ... </div>
+ *         <div class="actions">
+ *             <a class="enable" href="#" title="#"> ... </a>
+ *             <a class="disable" href="#" title="#"> ... </a>
+ *             <a class="edit" href="#" title="#"> ... </a>
+ *             <a class="delete" href="#" title="#"> ... </a>
+ *         </div>
+ *      </div|li>
+ * </div|ol|ul>
+ */
+.list-items.medium {
+    .no-result {
+        color: @gray;
+        font-style: italic;
+    }
+    .item {
+        border: 1px solid @grayLighter;
+        padding: 5px;
+        margin-bottom: 5px;
+
+        .separator {
+            color: @grayLight;
+        }
+        .item-meta {
+            color: @grayDark;
+            margin-bottom: 5px;
+        }
+        .item-content {
+            color: @gray;
+        }
+        .item-actions {
+            margin-top: 5px;
+
+            .enable {
+                color: @green;
+            }
+            .disable {
+                color: @red;
+            }
+            .edit {
+                color: @blue;
+            }
+            .delete {
+                color: @grayDark;
+            }
+        }
+    }
+}
+
+/**
+ * item's list | Template Medium
+ * 
+ * BSky/Bundle/BlogBundle
+ */
+.comment-list-items.list-items.medium {
+    .item {
+        .item-meta {
+            a.name {
+                text-decoration: underline;
+            }
+            .name {
+                color: @grayDark;
+                font-weight: bold;
+                font-size: 120%;
+            }
+        }
+    }
+}
+
+/**
+ * Content language selector
+ *
+ * <ul class="language-selector">
+ *     {% for language in languages %}
+ *     <li><a class="en|fr|de|etc ..." href=" ... ">Français</a></li>
+ *     {% endfor %}
+ * </ul>
+ */
+.language-selector {
+    margin: 0;
+    padding: 0;
+
+    li {
+        display: inline-block;
+        width: 24px;
+        height: 24px;
+        margin-right: 5px;
+
+        a {
+            height: 100%;
+            width: 100%;
+            display: block;
+            text-indent: -9999px;
+            color: transparent;
+            
+            &.en { background: transparent url('../img/flag/d24_en.png') no-repeat top left; }
+            &.fr { background: transparent url('../img/flag/d24_fr.png') no-repeat top left; }
+            &.it { background: transparent url('../img/flag/d24_it.png') no-repeat top left; }
+            &.es { background: transparent url('../img/flag/d24_es.png') no-repeat top left; }
+            &.de { background: transparent url('../img/flag/d24_de.png') no-repeat top left; }
+
+            &:hover,
+            &.current {
+                &.en { background: transparent url('../img/flag/24_en.png') no-repeat top left; }
+                &.fr { background: transparent url('../img/flag/24_fr.png') no-repeat top left; }
+                &.it { background: transparent url('../img/flag/24_it.png') no-repeat top left; }
+                &.es { background: transparent url('../img/flag/24_es.png') no-repeat top left; }
+                &.de { background: transparent url('../img/flag/24_de.png') no-repeat top left; }
+            }
+        }
+    }
+}
+
+/**
+ * Override and/or Add style of the default template of form
+ */
+.form-default {
+    .datetime-widget {
+        & > div {
+            display: inline-block;
+        }
+        & > div:first-child {
+            margin-right: 10px;
+        }
+    }
+    .clearfix {
+        .inline-text-fn() {
+            padding-top: 6px;
+            display: inline-block;
+        }
+        .inline-text {
+            .inline-text-fn();
+        }
+        .warning-text {
+            .inline-text-fn();
+            padding: 3px 2px;
+            color: lighten(@orange, 5%);
+        }
+        &.nested {
+            margin-bottom: 5px;
+        }
+    }
+}
+
+.portion {
+    border: 1px solid @grayLighter;
+    margin-bottom: 10px;
+
+    &.open {
+        .portion-container {
+            display: block;
+        }
+    }
+    .portion-header {
+        padding: 10px;
+        cursor: pointer;
+
+        .portion-title {
+            font-weight: bold;
+        }
+        .portion-action-toggle {
+            font-weight: bold;
+            font-size: 120%;
+            float: right;
+            display: block;
+            color: @gray;
+        }
+    }
+    .portion-container {
+        display: none;
+    }
+}
+
+/**
+ * Login page
+ */
+#loginWrapper {
+    #loginWrapper {
+        height: 200px;
+        position: relative;
+        width: 500px;
+        margin: 0 auto;
+
+        h1 {
+            background: url("../img/logo_bsky.png") no-repeat scroll left top transparent;
+            color: transparent;
+            display: block;
+            font-size: 1px;
+            height: 140px;
+            left: 125px;
+            position: relative;
+            top: 20px;
+            width: 250px;
+        }
+        #bybzoote {
+            background: url("../img/bybzoote.png") no-repeat scroll left top transparent;
+            color: transparent;
+            cursor: pointer;
+            font-size: 1px;
+            height: 24px;
+            left: 125px;
+            position: absolute;
+            top: 155px;
+            width: 97px;
+        }
+    }
+    .loginContainer {
+        background-color: white;
+        padding: 20px;
+        width: 460px;
+        margin-top: 0;
+
+        .error {
+            margin: -20px -20px 20px -20px;
+            color: @red;
+            padding: 10px 20px;
+            border-bottom: 1px solid lighten(@red, 50%);
+            background: lighten(@red, 57%);
+        }
+        .form-default {
+            margin: 0;
+
+            .actions {
+                margin: 0 -20px -20px -20px;
+            }
+        }
+    }
+}

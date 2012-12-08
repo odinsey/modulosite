@@ -1,0 +1,406 @@
+/* main.less
+ * Main stylesheet for administration
+ * ------------------------------------------------------- */
+
+html {
+    background-color: #D9D9D9;
+    height: 100%;
+}
+
+body {
+    background-color: transparent;
+}
+
+.clear { clear: both; }
+
+// Override the max-width of image
+img {
+    max-width: inherit;
+}
+
+input[type=file] {
+    height: auto;
+    width: auto;
+    line-height: 1;
+    padding: 0;
+    margin: 0;
+    font-size: 100%;
+}
+
+.globalContainer {
+    margin-top: 50px;
+}
+
+.row {
+    .asideColumn > div,
+    .asideColumn > nav,
+    .asideColumn > section {
+        padding: 10px 0 10px 10px;
+    }
+
+    .mainColumn > section {
+        padding: 10px 10px 10px 0;
+    }
+}
+
+.well {
+    &.small {
+        padding: 10px;
+    }
+}
+
+/*
+ * Override Twitter Boostrap
+ */
+.table {
+    .groupCheckbox {
+        width: 25px;
+        padding: 0px;
+        text-align: center;
+        vertical-align: middle;
+    }
+    .items-actions {
+        width: 110px;
+        padding: 10px 6px;
+        text-align: center;
+    }
+    thead {
+        tr {
+            th {
+                &.groupCheckbox {
+                    	
+                }
+            }
+        }
+    }
+    tbody {
+        tr {
+            &.selected {
+                td {
+                    background-color: @yellowLight;
+
+                    &:first-child {
+                        border-left: 1px solid @yellow;
+                    }
+                }
+            }
+
+            td:first-child {
+                border-left: 1px solid @white;
+            }
+        }
+    }
+}
+
+/**
+ * Table Actions
+ */
+.table-actions {
+    position: relative;
+    padding: 10px 0;
+
+    .group-actions {
+        vertical-align: top;
+
+        select {
+            width: auto;
+        }
+        .btn {
+            margin-left: 5px;
+            vertical-align: top;
+        }
+    }
+    .other-actions {
+        float: right;
+    }
+}
+
+/*
+ * UI
+ */
+.bui {
+    .btn-fn {
+        padding: 1px 3px 2px;
+        background-color: @grayLight;
+        font-size: @baseFontSize * .75;
+        font-weight: bold;
+        color: @white;
+        text-transform: uppercase;
+        .border-radius(3px);
+
+        &:hover {
+            text-decoration: none;
+        }
+    }
+
+    &.btt,
+    &.btt-show {
+        .btn-fn();
+    }
+	
+    &.btt-orange,
+    &.btt-warning {
+        .btn-fn();
+        background-color: @orange;
+
+        &:hover {
+            background-color: darken(@orange, 15);
+        }
+    }
+
+    &.btt-green,
+    &.btt-success {
+        .btn-fn();
+        background-color: @green;
+
+        &:hover {
+            background-color: darken(@green, 15);
+        }
+    }
+
+    &.btt-blue,
+    &.btt-notice,
+    &.btt-edit {
+        .btn-fn();
+        background-color: @blue;
+
+        &:hover {
+            background-color: darken(@blue, 15);
+        }
+    }
+
+    &.btt-important,
+    &.btt-delete {
+        .btn-fn();
+        background-color: #c43c35;
+
+        &:hover {
+            background-color: darken(#c43c35, 15);
+        }
+    }
+    
+    /* Design of 'popover' for btt action
+     */
+    &.btt-action-popover-wrapper {
+        display: inline-block;
+        position: relative;
+    }
+
+    &.treesortable {
+        margin: 0;
+        list-style: none;
+        list-position: inside;
+
+        .placeholder {
+            border-radius: 0;
+            border: 1px dashed @gray;
+        }
+
+        .ui-nestedSortable-error {
+            background: lighten(@red, 57%);
+            background-color: lighten(@red, 40%);
+            color: @red;
+        }
+        
+        .item-global-container {
+            ol,
+            ul {
+                list-style: none;
+                list-position: inside;
+                .item-global-container {
+                    ol,
+                    ul {
+                        list-style: none;
+                        list-position: inside;
+                        .item-global-container {
+                            ol,
+                            ul {
+                                list-style: none;
+                                list-position: inside;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .item-global-container {
+            margin: 8px 0;
+            
+            & > .item-container {
+                box-shadow: 0 1px 0 @grayLight inset;
+                border: 1px solid @gray;
+                padding: 7px 10px;
+                border-radius: 3px;
+            
+                .item-metadata {
+                    position: relative;
+                    cursor: move;
+
+                    .item-actions {
+                        position: absolute;
+                        top: 0;
+                        right: 0;
+
+                        .edit {
+                            color: @blue;
+                        }
+                        .delete {
+                            color: @red;
+                        }
+                    }
+                }
+                .item-edit-container {
+                    & > section,
+                    & > div {
+                        padding: 5px;
+                        border: 1px dashed @gray;
+                        border-radius: 3px;
+                        margin-top: 5px;
+
+                        .actions {
+                            margin: 10px 0 0 0;
+                            padding-left: 20px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+// ------------------------------------
+// ------------------------------------
+// ------------------------------------
+// ------------------------------------
+// ------------------------------------
+// ------------------------------------
+// ------------------------------------
+// ------------------------------------
+// ------------------------------------
+// ------------------------------------
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: normal;
+}
+
+#bwrapper {
+    margin: 60px 10px 10px 10px;
+ 
+    & > .bsidebar,
+    & > .bcontent {
+        background-color: @white;
+        float: left;
+    }
+    & > .bsidebar {
+        width: 220px;
+        margin-right: 10px;
+    }
+    & > .bcontent {
+        min-width: 700px;
+
+        & > .fill {
+            padding: 10px;
+        }
+    }
+}
+
+// Ovveride the navbar position
+.navbar {
+    .container {
+        width: auto;
+    }
+
+    .brand {
+        margin-left: 0;
+    }
+
+    &.navbar-fixed-top {
+        top: 10px;
+        left: 10px;
+        right: 10px;
+    }
+
+    .nav {
+        .icon() {
+            width: auto;
+            padding-left: 35px;
+            background-position: 10px center;
+            background-color: transparent;
+            background-repeat: no-repeat;
+        }
+        a.compass {
+            .icon();
+            background-image: url("../img/bsky-iconset-compass.png") ;
+        }
+        a.tools {
+            .icon();
+            background-image: url("../img/bsky-iconset-tools.png");
+        }
+        a.shape {
+            .icon();
+            background-image: url("../img/bsky-iconset-shape.png");
+        }
+    }
+}
+
+// ASIDE LEFT
+// ------------
+.navigation-aside-left {
+    padding: 10px 0;
+    .nav.nav-list {
+        .nav-header {
+            &:hover {
+                background-color: inherit;
+            }
+        }
+    }
+}
+
+
+// PAGE HEADERS
+// ------------
+
+.section-header {
+    padding-bottom: 10px;
+
+    h1, h2, h3, h4, h5, h6 {
+        color: @blue;
+        line-height: 1;
+    }
+}
+
+// BLOC TITLE
+// ------------
+.bloc-title {
+    text-transform: uppercase;
+    font-weight: bold;
+    color: @grayDark;
+    margin-bottom: 10px;
+    display: block;
+    font-size: 105%;
+}
+
+// FORM CHECKBOX
+// ------------
+.form-horizontal {
+    .control-group {
+        .controls {
+            .checkb {
+                label {
+                    display: inline;
+                    float: none;
+                    margin: 0;
+                    padding: 0 0 0 10px;
+                    text-align: left;
+                    width: auto;
+                }
+                input {
+                    margin: 0;
+                    padding: 0;
+                }
+            }
+        }
+    }
+}

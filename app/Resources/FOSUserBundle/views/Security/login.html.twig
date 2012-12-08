@@ -1,0 +1,40 @@
+{% extends 'NPCoreBundle::layout.html.twig' %}
+
+{% block body %}
+    {% block fos_user_content %}
+    <div id="loginWrapper">
+        <div id="loginWrapper">
+            <h1>Générateur de site</h1>
+        </div>
+        <div class="container globalContainer loginContainer">
+            {% if error %}
+            <div class="error">{{ error }}</div>
+            {% endif %}
+            <form class="form-horizontal" action="{{ path("fos_user_security_check") }}" method="POST">	
+		<input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+                <div class="control-group">
+                    <label class="control-label" for="username">{{ 'login.label.username'|trans({}, 'NPCoreBundle') }}</label>
+                    <div class="controls">
+                        <input type="text" class="span4" id="username" name="_username" value="{{ last_username }}" />
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="password">{{ 'login.label.password'|trans({}, 'NPCoreBundle') }}</label>
+                    <div class="controls">
+                        <input type="password" class="span4" id="password" name="_password" />
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="remember_me">{{ 'login.label.remember_me'|trans({}, 'NPCoreBundle') }}</label>
+                    <div class="controls">
+                        <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <input type="submit" class="btn btn-primary" value="{{ 'login.label.submit'|trans({}, 'NPCoreBundle') }}" >
+                </div>
+            </form>
+        </div>
+    </div>
+    {% endblock fos_user_content %}
+{% endblock body %}

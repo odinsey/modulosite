@@ -1,0 +1,10 @@
+{%extends "NPCoreBundle::layout.html.twig"%}
+{% block content %}
+<h1>Galerie Liste</h1>
+<ul>
+    {% for entity in entity_list %}
+    <li><a href="{{ path('np_gallery_gallery_edit', { 'id': entity.id }) }}" >{{entity}}</a></li>
+    {% endfor %}
+</ul>
+<a href="{{ path('np_gallery_gallery_new') }}" >Nouvelle Galerie</a>
+{% endblock %}

@@ -1,0 +1,29 @@
+np_gallery_gallery_index:
+    pattern: /
+    defaults: { _controller: NPGalleryBundle:Gallery:index }
+
+np_gallery_gallery_show:
+    pattern: /{id}/show
+    defaults: { _controller: NPGalleryBundle:Gallery:show }
+    requirements:
+      id: \d+
+
+np_gallery_gallery_new:
+    pattern: /new
+    defaults: { _controller: NPGalleryBundle:Gallery:new }
+
+np_gallery_gallery_edit:
+    pattern: /{id}/edit
+    defaults: { _controller: NPGalleryBundle:Gallery:edit }
+    requirements:
+      id: \d+
+
+np_gallery_gallery_delete:
+    pattern: /{id}/delete
+    defaults: { _controller: NPGalleryBundle:Gallery:delete }
+    requirements:
+      id: \d+
+
+np_gallery_gallery_groupprocess:
+    pattern: /groupprocess
+    defaults: { _controller: NPGalleryBundle:Gallery:groupProcess }

@@ -1,0 +1,16 @@
+parameters:
+    np_gallery.form.type.picture_collection.class: NP\Bundle\GalleryBundle\Form\Extension\Type\PictureCollectionType
+    np_gallery.event.subscriber.html_builder: NP\Bundle\GalleryBundle\Entity\HtmlBuilderEventSubscriber
+
+services:
+    form.type.picture_collection:
+        class: %np_gallery.form.type.picture_collection.class%
+        tags:
+            - { name: form.type, alias: picture_collection }
+
+    event.subscriber.html_builder:
+        class: %np_gallery.event.subscriber.html_builder%
+        tags:
+            - { name: doctrine.event_subscriber }
+        arguments:
+            - @service_container

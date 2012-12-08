@@ -1,0 +1,8 @@
+<nav class="navigation-aside-left">
+    {{ bsky_menu_get_by_node(aside_node, {
+        'menu' : '<ul class="nav nav-list">{items}</ul>',
+        'item' : '<li class="{class_css}"><a {target_blank} href="{url}">{title}</a></li>',
+        'current_class' : 'active',
+        'level_limit' : 2
+    }) }}
+</nav>

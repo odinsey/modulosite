@@ -1,0 +1,44 @@
+{% block picture_collection_widget %}
+{% spaceless %}
+<ul id="list-photos">
+	{% for child in form %}
+		<li id="photo_{{ child.vars.value.position }}">
+			<img src="{{ child.vars.value.WebPath }}" alt="{{ child.vars.value.title }}">
+			<p>{{ child.vars.value.title }}</p>
+		</li>
+    {% endfor %}
+</ul>
+
+    {% if prototype is defined %}
+        {% set attr = attr|merge({'data-prototype': form_row(prototype) }) %}
+    {% endif %}
+    <fieldset {{ block('widget_container_attributes') }}>
+	<legend>{{ 'global.form_legend.picture_collection' | trans([], 'NPGalleryBundle') }}</legend>
+            <div class="collection-fields">
+                {{ form_errors(form) }}
+                {% for child in form %}
+                    <fieldset class="collection-field-row" data-prop="">
+			<legend></legend>
+			{{ form_row(child) }}
+                        {% if allow_delete is defined and allow_delete %}
+                        <a href="#" class="delete-collection-row btn">
+                            {{ 'global.form_action.delete' | trans([], 'NPCoreBundle') }}
+                        </a>
+                        {% endif %}
+                    </fieldset>
+                {% endfor %}
+            </div>
+        {% if allow_add is defined and allow_add %}
+            <a href="#" class="add-collection-row btn">
+                {{ 'global.form_action.add' | trans([], 'NPCoreBundle') }}
+            </a>
+        {% endif %}
+	{% if allow_delete is defined and allow_delete %}
+            <a href="#" class="delete-collection-row btn" style="display: none">
+                {{ 'global.form_action.delete' | trans([], 'NPCoreBundle') }}
+            </a>
+	{% endif %}
+        {{ form_rest(form) }}
+    </fieldset>
+{% endspaceless %}
+{% endblock picture_collection_widget %}

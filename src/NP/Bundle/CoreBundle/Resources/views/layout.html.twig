@@ -1,0 +1,61 @@
+{% extends 'NPCoreBundle::base.html.twig' %}
+
+{% block body %}
+<div id="ajax-on-loading">
+    <span class="loading">{{ 'global.ajax.loading'|trans([], 'NPCoreBundle') }}</span>
+    <span class="error">{{ 'global.ajax.error'|trans([], 'NPCoreBundle') }}</span>
+    <span class="success">{{ 'global.ajax.success'|trans([], 'NPCoreBundle') }}</span>
+</div>
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </a>
+            <a href="{{ path('homepage') }}" class="brand">ModuloSite</a>
+            <a href="{{ path('homepage') }}logout" class="logout">Se déconnecter</a>
+        </div>
+    </div><!-- /navbar-inner -->
+</div>
+<div id="bwrapper">
+    <div class="bcontent">
+        <div class="fill">
+            {% if app.session.hasFlash('notice')
+                or app.session.hasFlash('error') 
+                or app.session.hasFlash('success') 
+                or app.session.hasFlash('info') %}
+            <div>
+                {% if app.session.hasFlash('notice') %}
+                <div class="alert">
+                    <a class="close" data-dismiss="alert">×</a>
+                    {{ app.session.flash('notice') }}
+                </div>
+                {% endif %}
+                {% if app.session.hasFlash('error') %}
+                <div class="alert alert-error">
+                    <a class="close" data-dismiss="alert">×</a>
+                    {{ app.session.flash('error') }}
+                </div>
+                {% endif %}
+                {% if app.session.hasFlash('success') %}
+                <div class="alert alert-success">
+                    <a class="close" data-dismiss="alert">×</a>
+                    {{ app.session.flash('success') }}
+                </div>
+                {% endif %}
+                {% if app.session.hasFlash('info') %}
+                <div class="alert alert-info">
+                    <a class="close" data-dismiss="alert">×</a>
+                    {{ app.session.flash('info') }}
+                </div>
+                {% endif %}
+            </div>
+            {% endif %}
+            {% block content %}{% endblock %}
+        </div><!-- .bcontent -->
+    </div><!-- .bcontent-wrapper -->
+    <div class="clear"></div>
+</div><!-- #bwrapper -->
+{% endblock %}

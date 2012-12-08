@@ -1,0 +1,21 @@
+parameters:
+    np_core.form.type.richeditor.class: NP\Bundle\CoreBundle\Form\Extension\Type\RichEditorType
+    np_core.form.type.image.class: NP\Bundle\CoreBundle\Form\Extension\Type\ImageType
+#    np_core.paginator.class: NP\Bundle\CoreBundle\Service\Paginator
+
+services:
+#    np_core.paginator:
+#        class: %np_core.paginator.class%
+#        scope: prototype
+#        arguments:
+#            - @knp_paginator.adapter
+            
+    form.type.richeditor:
+        class: %np_core.form.type.richeditor.class%
+        tags:
+            - { name: form.type, alias: richeditor }
+            
+    form.type.image:
+        class: %np_core.form.type.image.class%
+        tags:
+            - { name: form.type, alias: image }

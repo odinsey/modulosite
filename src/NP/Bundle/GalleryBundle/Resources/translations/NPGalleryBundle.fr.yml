@@ -1,0 +1,8 @@
+gallery.edit.title: 'Edition de la galerie'
+gallery.new.title: 'Nouvelle galerie'
+gallery.flash.success.delete: 'Galerie suprimée avec succès'
+gallery.flash.success.new: 'Galerie créée avec succès'
+gallery.flash.success.edit: 'Galerie modifiée avec succès'
+gallery.flash.error.delete: 'Une erreur est survenue pendant la suppression.'
+gallery.flash.error.new: 'Une erreur est survenue, aucune galerie n''a été créée'
+gallery.flash.error.edit: 'Une erreur est survenue pendant la modification, veuillez vérifier les champs.'

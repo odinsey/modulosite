@@ -1,0 +1,71 @@
+<!doctype html>
+<!--[if lt IE 7]><html class="no-js ie6 oldie" lang="{{ app.request.locale }}"><![endif]-->
+<!--[if IE 7]><html class="no-js ie7 oldie" lang="{{ app.request.locale }}"><![endif]-->
+<!--[if IE 8]><html class="no-js ie8 oldie" lang="{{ app.request.locale }}"><![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="{{ app.request.locale }}"><!--<![endif]-->
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>{% block title %}Administration{% endblock %}</title>
+<meta name="description" content="">
+<meta name="author" content="">
+<!-- Mobile viewport optimized: j.mp/bplateviewport -->
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<!-- Place favicon.ico and apple-touch-icon.png in the root directory: mathiasbynens.be/notes/touch-icons -->
+<!-- @todo minify with YUI CSS -->
+{% block stylesheets %}
+<link rel="stylesheet" href="{{ asset('bundles/npcore/css/global-bootstrap.css') }}">
+<link rel="stylesheet" href="{{ asset('bundles/npcore/css/admin.css') }}">
+<link rel="stylesheet" href="{{ asset('bundles/npcore/css/colorpicker.css') }}">
+<link rel="stylesheet" href="{{ asset('bundles/npgallery/css/picture_collection.css') }}">
+{% endblock %}
+<!-- More ideas for your <head> here: h5bp.com/d/head-Tips -->
+{% block javascripts_head %}
+<script src="{{ asset('bundles/npcore/js/libs/modernizr-2.0.6.min.js') }}"></script>
+{% endblock %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+</head>
+<body class="">
+{% block body %}{% endblock %}
+{% block javascripts_foot %}
+<!-- @todo Think to minify with YUI JS -->
+<script>
+    if (!window.jQuery) {
+        document.write('<script src="{{ asset('bundles/npcore/js/libs/jquery-1.7.1.min.js') }}"><\/script>');
+    }
+</script>
+<script type="text/javascript" src="{{ asset('bundles/npcore/js/libs/i18n/jquery.ui.datepicker-' ~ app.request.locale ~ '.js') }}"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
+<script>
+    if (!jQuery.ui) {
+        document.write('<script src="{{ asset('bundles/npcore/js/libs/jquery-ui-1.8.16.min.js') }}"><\/script>');
+    }
+</script>
+<script type="text/javascript" src="{{ asset('bundles/npcore/js/libs/jquery-ui.nestedSortable.js') }}"></script>
+<script type="text/javascript" src="{{ asset('bundles/npcore/js/libs/tiny_mce/jquery.tinymce.js') }}"></script>
+<script type="text/javascript" src="{{ asset('bundles/npcore/js/libs/twitter-bootstrap/bootstrap-alert.js') }}"></script>
+<script type="text/javascript" src="{{ asset('bundles/npcore/js/libs/twitter-bootstrap/bootstrap-dropdown.js') }}"></script>
+<script type="text/javascript" src="{{ asset('bundles/npcore/js/libs/twitter-bootstrap/bootstrap-tooltip.js') }}"></script>
+<script type="text/javascript" src="{{ asset('bundles/npcore/js/libs/twitter-bootstrap/bootstrap-popover.js') }}"></script>
+<script type="text/javascript" src="{{ asset('bundles/npcore/js/bootstrap-colorpicker.js') }}"></script>
+<script type="text/javascript" src="{{ asset('bundles/npcore/js/plugins.js') }}"></script>
+<script type="text/javascript" src="{{ asset('bundles/npcore/js/script.js') }}"></script>
+<script type="text/javascript" src="{{ asset('bundles/npcore/js/admin.js') }}"></script>
+<script type="text/javascript" src="{{ asset('bundles/npgallery/js/picture_collection.js') }}"></script>
+<!-- Change UA-XXXXX-X to be your site's ID
+<script>
+window._gaq = [['_setAccount','UAXXXXXXXX1'],['_trackPageview'],['_trackPageLoadTime']];
+Modernizr.load({
+  load: ('https:' == location.protocol ? '//ssl' : '//www') + '.google-analytics.com/ga.js'
+});
+</script>
+-->
+<!-- Prompt IE 6 users to install Chrome Frame. Remove this if you want to support IE 6.
+   chromium.org/developers/how-tos/chrome-frame-getting-started -->
+<!--[if lt IE 7 ]>
+<script src="//ajax.googleapis.com/ajax/libs/chrome-frame/1.0.3/CFInstall.min.js"></script>
+<script>window.attachEvent('onload',function(){CFInstall.check({mode:'overlay'})})</script>
+<![endif]-->
+{% endblock %}
+</body>
+</html>

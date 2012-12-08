@@ -1,0 +1,14 @@
+gallery:
+    edit:
+        title: Edition de la galerie
+    new:
+        title: Nouvelle galerie
+    flash:
+        success:
+            delete: Galerie suprimée avec succès
+            new: Galerie créée avec succès
+            edit: Galerie modifiée avec succès
+        error:
+            delete: Une erreur est survenue pendant la suppression.
+            new: Une erreur est survenue, aucune galerie n'a été créée
+            edit: Une erreur est survenue pendant la modification, veuillez vérifier les champs.
