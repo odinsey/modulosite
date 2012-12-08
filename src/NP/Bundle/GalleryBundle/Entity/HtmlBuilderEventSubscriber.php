@@ -64,9 +64,9 @@ class HtmlBuilderEventSubscriber implements EventSubscriber {
 		}
 	}
 
-	public function postUpdate(LifecycleEventArgs $args){
-		$this->postPersist($args);
-	}
+//	public function postUpdate(LifecycleEventArgs $args){
+//		$this->postPersist($args);
+//	}
 
 //	public function postPersist(LifecycleEventArgs $args){
 //		$entity = $args->getEntity();

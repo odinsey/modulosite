@@ -14,6 +14,7 @@ use NP\Bundle\CoreBundle\Util\Urlizer;
  *
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="NP\Bundle\GalleryBundle\Entity\PictureRepository")
+ * @ORM\HasLifecycleCallbacks
  */
 class Picture {
     
@@ -61,9 +62,10 @@ class Picture {
     private $path;
 
     /**
-     * @Assert\File(maxSize="6000000")
+     * @Assert\File(maxSize="5M")
+     * @Assert\Image()
      */
-    private $file;
+    protected $file;
 
     // a property used temporarily while deleting
     private $filenameForRemove;
@@ -167,7 +169,43 @@ class Picture {
     public function getGallery() {
 	return $this->gallery;
     }
+    
+    /**
+     * Set file
+     *
+     * @param mixed $file
+     */
+    public function setFile($file)
+    {
+        if ($file != $this->file) {
+            $this->updated_at = new \DateTime();
+            $this->file = $file;
+        }
+    }
+    
+    public function getFileName($type = 'medium')
+    {
+        return sprintf('img-%s-%d.jpg', $type, $this->getId());
+    }
+    
+    /**
+     * Get url for a type of image
+     *
+     * @param string $type
+     * @return string
+     */
+    public function getUrl($type = '')
+    {
+        if ($this->getPlan() == null) {
+            return '';
+        }
 
+        if (!in_array($type, array_keys(self::$FILE_TYPES))) {
+            $type = 'medium';
+        }
+        return $this->getWebPath() . '/' . $this->getFileName($type);
+    }
+    
     public function getAbsolutePath() {
 	return null === $this->getPath() ? null : $this->getUploadRootDir() . '/' . $this->getPath();
     }
@@ -185,7 +223,25 @@ class Picture {
 	// get rid of the __DIR__ so it doesn't screw when displaying uploaded doc/image in the view.
 	return 'upload/';
     }
+    
+    /**
+     * @ORM\PrePersist()
+     * @ORM\PreUpdate()
+     */
+    public function preUpload()
+    {
+        if (null !== $this->file) {
+            if (!is_dir($this->getUploadDir())) {
+                $filesystem = new Filesystem();
+                $filesystem->mkdir($this->getUploadDir());
+            }
+        }
+    }
 
+    /**
+     * @ORM\PostPersist()
+     * @ORM\PostUpdate()
+     */    
     public function upload() {
 	// the file property can be empty if the field is not required
 	if (null === $this->file) {
@@ -212,6 +268,9 @@ class Picture {
 	$this->filenameForRemove = $this->getAbsolutePath();
     }
 
+    /**
+     * @ORM\PreRemove()
+     */
     public function removeUpload() {
 	if ($this->filenameForRemove) {
 	    @unlink($this->filenameForRemove);
