@@ -8,20 +8,21 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class PictureFormType extends AbstractType {
 
-	public function buildForm(FormBuilderInterface $builder, array $options){
-		$builder
-			->add('title', 'text', array('label' => 'Titre'))
-			->add('url', 'image', array('required'=>false, 'mapped' => false))
-			->add('file', 'file', array('label' => 'Photo'));
-	}
+    public function buildForm(FormBuilderInterface $builder, array $options) {
+	$builder
+	    ->add('title', 'text', array('label' => 'Titre'))
+	    ->add('file', 'file', array('required' => false, 'label' => 'Photo'))
+		->add('position','hidden');
+    }
 
-	public function setDefaultOptions(OptionsResolverInterface $resolver){
-		$resolver->setDefaults(array(
-			'data_class' => 'NP\Bundle\GalleryBundle\Entity\Picture'
-		));
-	}
+    public function setDefaultOptions(OptionsResolverInterface $resolver) {
+	$resolver->setDefaults(array(
+	    'data_class' => 'NP\Bundle\GalleryBundle\Entity\Picture'
+	));
+    }
 
-	public function getName(){
-		return 'np_gallery_picture';
-	}
+    public function getName() {
+	return 'np_gallery_picture';
+    }
+
 }

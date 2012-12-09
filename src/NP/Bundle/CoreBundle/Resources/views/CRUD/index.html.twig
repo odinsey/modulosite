@@ -55,7 +55,7 @@
             {% endblock %}
             {% block index_list_body %}
             <tbody>
-                {% for entity in paginator %}
+                {% for entity in pagination %}
                 <tr>
                     {% block index_bashactions_item %}
                     {% if is_granted('ROLE_ADMIN') %}
@@ -91,7 +91,7 @@
     </form>
     {% endblock %}
     {% block index_paginator %}
-    {{ paginator|paginate }}
+    {{ pagination.render()|raw }}
     {% endblock %}
 {%- block content_foot -%}
 </section>

@@ -21,19 +21,19 @@ use Imagine\Image\ImageInterface;
  * @ORM\HasLifecycleCallbacks
  */
 class Picture {
-    
     /**
      * Hook timestampable behavior
      * updates createdAt, updatedAt fields
      */
-    use TimestampableEntity;    
-    
+
+use TimestampableEntity;
+
     protected static $FILE_TYPES = array(
-        'small' => array('width' => 82, 'height' => 78, 'thumbnail_type' => ImageInterface::THUMBNAIL_OUTBOUND),
-        'medium' => array('width' => 279, 'height' => 269, 'thumbnail_type' => ImageInterface::THUMBNAIL_OUTBOUND),
-        'big' => array('width' => 1024, 'height' => 768, 'thumbnail_type' => ImageInterface::THUMBNAIL_INSET)
+	'small' => array('width' => 90, 'height' => 78, 'thumbnail_type' => ImageInterface::THUMBNAIL_OUTBOUND),
+	'medium' => array('width' => 233, 'height' => 155, 'thumbnail_type' => ImageInterface::THUMBNAIL_OUTBOUND),
+	'big' => array('width' => 1024, 'height' => 768, 'thumbnail_type' => ImageInterface::THUMBNAIL_INSET)
     );
-    
+
     /**
      * @var integer
      *
@@ -58,7 +58,6 @@ class Picture {
     private $position;
 
     /**
-     * @Gedmo\SortableGroup
      * @ORM\ManyToOne(targetEntity="Gallery", inversedBy="pictures")
      * @ORM\JoinColumn(onDelete="SET NULL")
      *
@@ -72,12 +71,10 @@ class Picture {
      */
     private $file;
 
-    // a property used temporarily while deleting
-    private $filenameForRemove;
-
     /*
      * @return string
      */
+
     public function __toString() {
 	return $this->title;
     }
@@ -132,18 +129,17 @@ class Picture {
     public function getPosition() {
 	return $this->position;
     }
-    
+
     /**
      * Set file
      *
      * @param mixed $file
      */
-    public function setFile($file)
-    {
-        if ($file != $this->file) {
-            $this->updated_at = new \DateTime();
-            $this->file = $file;
-        }
+    public function setFile($file) {
+	if ($file != $this->file) {
+	    $this->updated_at = new \DateTime();
+	    $this->file = $file;
+	}
     }
 
     /**
@@ -175,15 +171,13 @@ class Picture {
     public function getGallery() {
 	return $this->gallery;
     }
-    
-    public function getFileName($type)
-    {
-        return sprintf('img-%s-%d.jpg', $type, $this->getId());
+
+    public function getFileName($type) {
+	return sprintf('img-%s-%d.jpg', $type, $this->getId());
     }
 
-    public function getFolderName()
-    {
-        return sprintf('gallery-%d', $this->getGallery()->getId());
+    public function getFolderName() {
+	return sprintf('gallery-%d', $this->getGallery()->getId());
     }
 
     /**
@@ -192,98 +186,89 @@ class Picture {
      * @param string $type
      * @return string
      */
-    public function getUrl($type = 'small')
-    {
-        if ($this->getGallery() == null) {
-            return '';
-        }
+    public function getUrl($type = 'small') {
+	if ($this->getGallery() == null) {
+	    return '';
+	}
 
-        if (!in_array($type, array_keys(self::$FILE_TYPES))) {
-            $type = 'medium';
-        }
-        return $this->getWebPath() . '/' . $this->getFileName($type);
+	if (!in_array($type, array_keys(self::$FILE_TYPES))) {
+	    $type = 'medium';
+	}
+	return $this->getWebPath() . '/' . $this->getFileName($type);
     }
 
     /**
      * @ORM\PrePersist()
      * @ORM\PreUpdate()
      */
-    public function preUpload()
-    {
-        if (null !== $this->file) {
-            if (!is_dir($this->getFilePath())) {
-                $filesystem = new Filesystem();
-                $filesystem->mkdir($this->getFilePath());
-            }
-        }
+    public function preUpload() {
+	if (null !== $this->file) {
+	    if (!is_dir($this->getFilePath())) {
+		$filesystem = new Filesystem();
+		$filesystem->mkdir($this->getFilePath());
+	    }
+	}
     }
 
     /**
      * @ORM\PostPersist()
      * @ORM\PostUpdate()
      */
-    public function upload()
-    {
-        if (null === $this->file) {
-            return;
-        }
-        $tmp_filename = 'tmp-' . $this->getId();
-        $this->file->move($this->getFilePath(), $tmp_filename);
+    public function upload() {
+	if (null === $this->file) {
+	    return;
+	}
+	$tmp_filename = 'tmp-' . $this->getId();
+	$this->file->move($this->getFilePath(), $tmp_filename);
 
-        $imagine = new Imagine();
-        $imagine->open($this->getFilePath() . '/' . $tmp_filename)
-                ->save($this->getFilePath() . '/' . $this->getFileName('orig'));
+	$imagine = new Imagine();
+	$imagine->open($this->getFilePath() . '/' . $tmp_filename)
+		->save($this->getFilePath() . '/' . $this->getFileName('orig'));
 
-        $filesystem = new Filesystem();
-        $filesystem->remove($this->getFilePath() . '/' . $tmp_filename);
+	$filesystem = new Filesystem();
+	$filesystem->remove($this->getFilePath() . '/' . $tmp_filename);
 
-        foreach (self::$FILE_TYPES as $type => $params) {
-            $size = new Box($params['width'], $params['height']);
-            $imagine->open($this->getFilePath() . '/' . $this->getFileName('orig'))
-                    ->thumbnail($size, $params['thumbnail_type'])
-                    ->save($this->getFilePath() . '/' . $this->getFileName($type), array('quality' => 80));
-        }
+	foreach (self::$FILE_TYPES as $type => $params) {
+	    $size = new Box($params['width'], $params['height']);
+	    $imagine->open($this->getFilePath() . '/' . $this->getFileName('orig'))
+		    ->thumbnail($size, $params['thumbnail_type'])
+		    ->save($this->getFilePath() . '/' . $this->getFileName($type), array('quality' => 80));
+	}
 
-        unset($this->file);
+	unset($this->file);
     }
 
     /**
      * @ORM\PreRemove()
      */
-    public function removeUpload()
-    {
-        $filesystem = new Filesystem();
-        $filesystem->remove($this->getFilePath() . '/' . $this->getFileName('orig'));
-        foreach (self::$FILE_TYPES as $type => $dim) {
-            $filesystem->remove($this->getFilePath() . '/' . $this->getFileName($type));
-        }
+    public function removeUpload() {
+	$filesystem = new Filesystem();
+	$filesystem->remove($this->getFilePath() . '/' . $this->getFileName('orig'));
+	foreach (self::$FILE_TYPES as $type => $dim) {
+	    $filesystem->remove($this->getFilePath() . '/' . $this->getFileName($type));
+	}
     }
 
-    public function getAbsolutePath($type)
-    {
-        return $this->getFilePath() . '/' . $this->getFileName($type);
+    public function getAbsolutePath($type) {
+	return $this->getFilePath() . '/' . $this->getFileName($type);
     }
 
-    public function getWebPath()
-    {
-        return $this->getUploadDir() . '/' . $this->getFolderName();
+    public function getWebPath() {
+	return $this->getUploadDir() . '/' . $this->getFolderName();
     }
 
-    public function getFilePath()
-    {
-        return $this->getUploadRootDir() . '/' . $this->getFolderName();
+    public function getFilePath() {
+	return $this->getUploadRootDir() . '/' . $this->getFolderName();
     }
 
-    protected function getUploadRootDir()
-    {
-        // the absolute directory path where uploaded documents should be saved
-        return __DIR__ . '/../../../../../web' . $this->getUploadDir();
+    protected function getUploadRootDir() {
+	// the absolute directory path where uploaded documents should be saved
+	return __DIR__ . '/../../../../../web' . $this->getUploadDir();
     }
 
-    protected function getUploadDir()
-    {
-        // get rid of the __DIR__ so it doesn't screw when displaying uploaded doc/image in the view.
-        return '/upload';
+    protected function getUploadDir() {
+	// get rid of the __DIR__ so it doesn't screw when displaying uploaded doc/image in the view.
+	return '/upload';
     }
 
 }

@@ -20,7 +20,7 @@ class GalleryGroupFormType extends AbstractType
         $builder->add('action', 'choice', array(
             'choices'   => array(
                 'none'   => '',
-                'delete' => $this->translator->trans('testimonial.index.form_group.delete', array(), 'BSkyGuestBookBundle')
+                'delete' => $this->translator->trans('gallery.index.form_group.delete', array(), 'NPGalleryBundle')
             ),
             'multiple'  => false,
             'attr' => array('class' => 'medium')

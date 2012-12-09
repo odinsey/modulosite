@@ -1,44 +1,62 @@
 {% block picture_collection_widget %}
 {% spaceless %}
-<ul id="list-photos">
+<ul id="list-photos" class="thumbnails">
 	{% for child in form %}
-		<li id="photo_{{ child.vars.value.position }}">
-			<img src="{{ child.vars.value.url }}" alt="{{ child.vars.value.title }}">
-			<p>{{ child.vars.value.title }}</p>
-		</li>
+	<li id="photo_{{ child.vars.value.id }}" class="thumbnail">
+	    <img src="{{ child.vars.value.url('small') }}" alt="{{ child.vars.value.title }}">
+	    <div class="caption">
+		<h3>{{ child.vars.value.title }}</h3>
+		<p>
+		    <a role="button" data-toggle="modal" href="#modal_{{ child.vars.value.id }}" class="btn btn-mini btn-primary" title="{{ 'global.form_action.edit'|trans([], 'NPCoreBundle') }}">{{ 'global.form_action.edit'|trans([], 'NPCoreBundle') }}</a>
+			    {% if allow_delete is defined and allow_delete %}
+		    &nbsp;<a title="{{ 'global.form_action.delete'|trans([], 'NPCoreBundle') }}" class="btn btn-mini btn-danger">{{ 'global.form_action.delete'|trans([], 'NPCoreBundle') }}</a>
+			    {% endif %}
+		<p>
+	    </div>
+	    <div id="modal_{{ child.vars.value.id }}" class="modal hide fade">
+		<div class="modal-header">
+		    <h3>{{ 'global.form_action.edit'|trans([], 'NPCoreBundle') }}</h3>
+		</div>
+		<div class="modal-body">
+		    {{ form_row(child) }}
+		    </div>
+		    <div class="modal-footer">
+			<a href="#" class="btn btn-primary" data-dismiss="modal" aria-hidden="true">{{ 'global.form_action.confirm' | trans([], 'NPGalleryBundle') }}</a>
+		    </div>
+		</div>
+	    </li>
     {% endfor %}
-</ul>
+	</ul>
 
     {% if prototype is defined %}
         {% set attr = attr|merge({'data-prototype': form_row(prototype) }) %}
     {% endif %}
-    <fieldset {{ block('widget_container_attributes') }}>
-	<legend>{{ 'global.form_legend.picture_collection' | trans([], 'NPGalleryBundle') }}</legend>
-            <div class="collection-fields">
+	<fieldset {{ block('widget_container_attributes') }}>
+	    <legend>{{ 'global.form_legend.picture_collection' | trans([], 'NPGalleryBundle') }}</legend>
+	    <div class="collection-fields">
                 {{ form_errors(form) }}
                 {% for child in form %}
-                    <fieldset class="collection-field-row" data-prop="">
-			<legend></legend>
+		    <fieldset class="collection-field-row" data-prop="">
 			{{ form_row(child) }}
                         {% if allow_delete is defined and allow_delete %}
-                        <a href="#" class="delete-collection-row btn">
-                            {{ 'global.form_action.delete' | trans([], 'NPCoreBundle') }}
-                        </a>
+			    <a href="#" class="delete-collection-row btn">
+                    {{ 'global.form_action.delete' | trans([], 'NPCoreBundle') }}
+				</a>
                         {% endif %}
-                    </fieldset>
+			    </fieldset>
                 {% endfor %}
-            </div>
+			</div>
         {% if allow_add is defined and allow_add %}
-            <a href="#" class="add-collection-row btn">
+			<a href="#" class="add-collection-row btn">
                 {{ 'global.form_action.add' | trans([], 'NPCoreBundle') }}
-            </a>
+			    </a>
         {% endif %}
 	{% if allow_delete is defined and allow_delete %}
-            <a href="#" class="delete-collection-row btn" style="display: none">
+			    <a href="#" class="delete-collection-row btn" style="display: none">
                 {{ 'global.form_action.delete' | trans([], 'NPCoreBundle') }}
-            </a>
+				</a>
 	{% endif %}
         {{ form_rest(form) }}
-    </fieldset>
+			    </fieldset>
 {% endspaceless %}
 {% endblock picture_collection_widget %}

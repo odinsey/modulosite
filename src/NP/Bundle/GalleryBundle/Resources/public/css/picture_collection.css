@@ -1,24 +1,13 @@
 /************
 STYLE DE LA LISTE A TRIER
 ************/
-ul#list-photos{
-  list-style:none;
-  height:140px;
-}
-ul#list-photos li{
-  border:1px solid #ddd;
-  padding:10px;
+ul#list-photos li {
   cursor:move;
-  height:100px;
-  width:140px;
-  float:left;
-  margin-right:10px;
   background:#fff;
-  color:#212326;
-  font-size:12px;
-  -moz-box-shadow:2px 2px 5px #ccc;
 }
-ul#list-photos li.highlight{
+ul#list-photos li.highlight {
   background:#f2f2f2;
   border:1px dashed #212326;
+  height:160px;
+  width:140px;
 }

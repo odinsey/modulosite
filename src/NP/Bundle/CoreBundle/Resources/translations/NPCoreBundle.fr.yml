@@ -35,6 +35,7 @@ global:
         save_order: Enregistrer l'ordre
         close: Fermer
         cancel: Annuler
+        confirm: Ok
         group:
             approve: Approuver
             disapprove: Désapprouver

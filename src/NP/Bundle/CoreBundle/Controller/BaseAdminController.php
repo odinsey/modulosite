@@ -34,6 +34,7 @@ abstract class BaseAdminController extends Controller {
     protected $template_new = 'NPCoreBundle:CRUD:new.html.twig';
     protected $template_edit = 'NPCoreBundle:CRUD:edit.html.twig';
     protected $template_show = 'NPCoreBundle:CRUD:show.html.twig';
+    protected $max_per_page = 10;
 
     public function setContainer(ContainerInterface $container = null) {
 	parent::setContainer($container);
@@ -114,13 +115,12 @@ abstract class BaseAdminController extends Controller {
 
 	$query = $this->getClassRepository()->findAll();
 
-	$paginator = $this->get('np_core.paginator')
-		->paginate(
-		$query, $request->query->get('page', 1), 10, 5);
+	$pagination = $this->get('knp_paginator')
+		->paginate($query, $request->query->get('page', 1), $this->max_per_page);
 
 	return $this->render($this->template_index, array(
 		    'filter' => (($filter) ? $filter->createView() : null),
-		    'paginator' => $paginator,
+		    'pagination' => $pagination,
 		    'groupForm' => $form->createView(),
 		    'translation_prefix' => $this->translation_prefix,
 		    'bundle_name' => $this->bundle_name,
@@ -175,7 +175,7 @@ abstract class BaseAdminController extends Controller {
 	    if ($this->getRequest()->get('save_and_add') != null) {
 		return $this->redirect($this->generateUrl($this->route_new));
 	    }
-	    return $this->redirect($this->generateUrl($this->route_index));
+	    return $this->redirect($this->generateUrl($this->route_edit, array('id'=>$entity->getId())));
 	}
 
 	return $this->render($this->template_new, array(
@@ -202,7 +202,7 @@ abstract class BaseAdminController extends Controller {
 			    $this->translation_prefix . '.flash.success.edit', array('%name%' => $entity), $this->bundle_name)
 	    );
 
-	    return $this->redirect($this->generateUrl($this->route_index));
+	    return $this->redirect($this->generateUrl($this->route_edit, array('id'=>$entity->getId())));
 	}
 
 	return $this->render($this->template_edit, array(

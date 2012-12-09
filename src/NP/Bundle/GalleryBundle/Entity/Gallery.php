@@ -109,7 +109,8 @@ class Gallery {
      * @return array_collection 
      */
     public function getPictures() {
-	return $this->pictures;
+		
+		return $this->pictures;
     }
 
     /**
