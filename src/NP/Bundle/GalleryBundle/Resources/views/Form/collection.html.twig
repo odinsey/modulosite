@@ -3,7 +3,7 @@
 <ul id="list-photos">
 	{% for child in form %}
 		<li id="photo_{{ child.vars.value.position }}">
-			<img src="{{ child.vars.value.WebPath }}" alt="{{ child.vars.value.title }}">
+			<img src="{{ child.vars.value.url }}" alt="{{ child.vars.value.title }}">
 			<p>{{ child.vars.value.title }}</p>
 		</li>
     {% endfor %}

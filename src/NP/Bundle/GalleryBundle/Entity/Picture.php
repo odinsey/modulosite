@@ -8,6 +8,10 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use NP\Bundle\CoreBundle\Util\Urlizer;
+use Symfony\Component\Filesystem\Filesystem;
+use Imagine\Imagick\Imagine;
+use Imagine\Image\Box;
+use Imagine\Image\ImageInterface;
 
 /**
  * Picture
@@ -22,7 +26,13 @@ class Picture {
      * Hook timestampable behavior
      * updates createdAt, updatedAt fields
      */
-    use TimestampableEntity;
+    use TimestampableEntity;    
+    
+    protected static $FILE_TYPES = array(
+        'small' => array('width' => 82, 'height' => 78, 'thumbnail_type' => ImageInterface::THUMBNAIL_OUTBOUND),
+        'medium' => array('width' => 279, 'height' => 269, 'thumbnail_type' => ImageInterface::THUMBNAIL_OUTBOUND),
+        'big' => array('width' => 1024, 'height' => 768, 'thumbnail_type' => ImageInterface::THUMBNAIL_INSET)
+    );
     
     /**
      * @var integer
@@ -57,15 +67,10 @@ class Picture {
     private $gallery;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $path;
-
-    /**
      * @Assert\File(maxSize="5M")
      * @Assert\Image()
      */
-    protected $file;
+    private $file;
 
     // a property used temporarily while deleting
     private $filenameForRemove;
@@ -127,26 +132,27 @@ class Picture {
     public function getPosition() {
 	return $this->position;
     }
-
+    
     /**
-     * Set path
+     * Set file
      *
-     * @param string $path
-     * @return Picture
+     * @param mixed $file
      */
-    public function setPath($path) {
-	$this->path = $path;
-
-	return $this;
+    public function setFile($file)
+    {
+        if ($file != $this->file) {
+            $this->updated_at = new \DateTime();
+            $this->file = $file;
+        }
     }
 
     /**
-     * Get path
+     * Get file
      *
      * @return string
      */
-    public function getPath() {
-	return $this->path;
+    public function getFile() {
+	return $this->file;
     }
 
     /**
@@ -170,33 +176,25 @@ class Picture {
 	return $this->gallery;
     }
     
-    /**
-     * Set file
-     *
-     * @param mixed $file
-     */
-    public function setFile($file)
-    {
-        if ($file != $this->file) {
-            $this->updated_at = new \DateTime();
-            $this->file = $file;
-        }
-    }
-    
-    public function getFileName($type = 'medium')
+    public function getFileName($type)
     {
         return sprintf('img-%s-%d.jpg', $type, $this->getId());
     }
-    
+
+    public function getFolderName()
+    {
+        return sprintf('gallery-%d', $this->getGallery()->getId());
+    }
+
     /**
      * Get url for a type of image
      *
      * @param string $type
      * @return string
      */
-    public function getUrl($type = '')
+    public function getUrl($type = 'small')
     {
-        if ($this->getPlan() == null) {
+        if ($this->getGallery() == null) {
             return '';
         }
 
@@ -205,25 +203,7 @@ class Picture {
         }
         return $this->getWebPath() . '/' . $this->getFileName($type);
     }
-    
-    public function getAbsolutePath() {
-	return null === $this->getPath() ? null : $this->getUploadRootDir() . '/' . $this->getPath();
-    }
 
-    public function getWebPath() {
-	return null === $this->getPath() ? null : $this->getUploadDir() . '/' . $this->getPath();
-    }
-
-    protected function getUploadRootDir() {
-	// the absolute directory path where uploaded documents should be saved
-	return __DIR__ . '/../../../../../web/' . $this->getUploadDir();
-    }
-
-    protected function getUploadDir() {
-	// get rid of the __DIR__ so it doesn't screw when displaying uploaded doc/image in the view.
-	return 'upload/';
-    }
-    
     /**
      * @ORM\PrePersist()
      * @ORM\PreUpdate()
@@ -231,9 +211,9 @@ class Picture {
     public function preUpload()
     {
         if (null !== $this->file) {
-            if (!is_dir($this->getUploadDir())) {
+            if (!is_dir($this->getFilePath())) {
                 $filesystem = new Filesystem();
-                $filesystem->mkdir($this->getUploadDir());
+                $filesystem->mkdir($this->getFilePath());
             }
         }
     }
@@ -241,40 +221,69 @@ class Picture {
     /**
      * @ORM\PostPersist()
      * @ORM\PostUpdate()
-     */    
-    public function upload() {
-	// the file property can be empty if the field is not required
-	if (null === $this->file) {
-	    return;
-	}
-	
-	$file_parts = pathinfo($this->file->getClientOriginalName());
+     */
+    public function upload()
+    {
+        if (null === $this->file) {
+            return;
+        }
+        $tmp_filename = 'tmp-' . $this->getId();
+        $this->file->move($this->getFilePath(), $tmp_filename);
 
-	$sanitanized_name = $this->gallery . '-' . $this->id . '-' . Urlizer::Urlize($file_parts['filename']) . '.' . $file_parts['extension'];
-	var_dump($sanitanized_name);exit;
-	
-	// move takes the target directory and then the target filename to move to
-	$this->file->move($this->getUploadRootDir(), $sanitanized_name);
+        $imagine = new Imagine();
+        $imagine->open($this->getFilePath() . '/' . $tmp_filename)
+                ->save($this->getFilePath() . '/' . $this->getFileName('orig'));
 
-	// set the path property to the filename where you've saved the file
-	$this->setPath($sanitanized_name);
-	$this->flush();
+        $filesystem = new Filesystem();
+        $filesystem->remove($this->getFilePath() . '/' . $tmp_filename);
 
-	// clean up the file property as you won't need it anymore
-	$this->file = null;
-    }
+        foreach (self::$FILE_TYPES as $type => $params) {
+            $size = new Box($params['width'], $params['height']);
+            $imagine->open($this->getFilePath() . '/' . $this->getFileName('orig'))
+                    ->thumbnail($size, $params['thumbnail_type'])
+                    ->save($this->getFilePath() . '/' . $this->getFileName($type), array('quality' => 80));
+        }
 
-    public function storeFilenameForRemove() {
-	$this->filenameForRemove = $this->getAbsolutePath();
+        unset($this->file);
     }
 
     /**
      * @ORM\PreRemove()
      */
-    public function removeUpload() {
-	if ($this->filenameForRemove) {
-	    @unlink($this->filenameForRemove);
-	}
+    public function removeUpload()
+    {
+        $filesystem = new Filesystem();
+        $filesystem->remove($this->getFilePath() . '/' . $this->getFileName('orig'));
+        foreach (self::$FILE_TYPES as $type => $dim) {
+            $filesystem->remove($this->getFilePath() . '/' . $this->getFileName($type));
+        }
+    }
+
+    public function getAbsolutePath($type)
+    {
+        return $this->getFilePath() . '/' . $this->getFileName($type);
+    }
+
+    public function getWebPath()
+    {
+        return $this->getUploadDir() . '/' . $this->getFolderName();
+    }
+
+    public function getFilePath()
+    {
+        return $this->getUploadRootDir() . '/' . $this->getFolderName();
+    }
+
+    protected function getUploadRootDir()
+    {
+        // the absolute directory path where uploaded documents should be saved
+        return __DIR__ . '/../../../../../web' . $this->getUploadDir();
+    }
+
+    protected function getUploadDir()
+    {
+        // get rid of the __DIR__ so it doesn't screw when displaying uploaded doc/image in the view.
+        return '/upload';
     }
 
 }
