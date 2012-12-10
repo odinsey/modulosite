@@ -5,7 +5,7 @@
 	<li id="photo_{{ child.vars.value.id }}" class="thumbnail">
 	    <img src="{{ child.vars.value.url('small') }}" alt="{{ child.vars.value.title }}">
 	    <div class="caption">
-		<h4>{{ child.vars.value.title|truncate }}</h4>
+		<p>{{ child.vars.value.title }}</p>
 		<p>
 		    <a role="button" data-toggle="modal" href="#modal_{{ child.vars.value.id }}" class="btn btn-mini btn-primary" title="{{ 'global.form_action.edit'|trans([], 'NPCoreBundle') }}">{{ 'global.form_action.edit'|trans([], 'NPCoreBundle') }}</a>
 		    &nbsp;<a title="{{ 'global.form_action.delete'|trans([], 'NPCoreBundle') }}" class="btn btn-mini btn-danger">{{ 'global.form_action.delete'|trans([], 'NPCoreBundle') }}</a>
