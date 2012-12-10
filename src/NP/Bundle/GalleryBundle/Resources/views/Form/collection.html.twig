@@ -1,6 +1,8 @@
 {% block picture_collection_widget %}
 {% spaceless %}
-<ul id="list-photos" class="thumbnails">
+
+    {{ form_errors(form) }}
+    <ul id="list-photos" class="thumbnails">
 	{% for child in form %}
 	<li id="photo_{{ child.vars.value.id }}" class="thumbnail">
 	    <img src="{{ child.vars.value.url('small') }}" alt="{{ child.vars.value.title }}">
@@ -8,7 +10,7 @@
 		<p>{{ child.vars.value.title }}</p>
 		<p>
 		    <a role="button" data-toggle="modal" href="#modal_{{ child.vars.value.id }}" class="btn btn-mini btn-primary" title="{{ 'global.form_action.edit'|trans([], 'NPCoreBundle') }}">{{ 'global.form_action.edit'|trans([], 'NPCoreBundle') }}</a>
-		    &nbsp;<a title="{{ 'global.form_action.delete'|trans([], 'NPCoreBundle') }}" class="btn btn-mini btn-danger">{{ 'global.form_action.delete'|trans([], 'NPCoreBundle') }}</a>
+		    &nbsp;<a title="{{ 'global.form_action.delete'|trans([], 'NPCoreBundle') }}" class="btn btn-mini btn-danger delete">{{ 'global.form_action.delete'|trans([], 'NPCoreBundle') }}</a>
 		</p>
 	    </div>
 	    <div id="modal_{{ child.vars.value.id }}" class="modal hide fade">
@@ -31,24 +33,18 @@
     {% endif %}
 	<fieldset {{ block('widget_container_attributes') }}>
 	    <div class="collection-fields">
-                {{ form_errors(form) }}
-                {% for child in form %}
-		    <fieldset class="collection-field-row" data-prop="">
-			{{ form_row(child) }}
-		    </fieldset>
-                {% endfor %}
-			</div>
+	    </div>
         {% if allow_add is defined and allow_add %}
-			<a href="#" class="add-collection-row btn">
+		    <a href="#" class="add-collection-row btn">
                 {{ 'global.form_action.add' | trans([], 'NPCoreBundle') }}
-			    </a>
+			</a>
         {% endif %}
 	{% if allow_delete is defined and allow_delete %}
-			    <a href="#" class="delete-collection-row btn" style="display: none">
+			<a href="#" class="delete-collection-row btn" style="display: none">
                 {{ 'global.form_action.delete' | trans([], 'NPCoreBundle') }}
-				</a>
+			    </a>
 	{% endif %}
         {{ form_rest(form) }}
-			    </fieldset>
+			</fieldset>
 {% endspaceless %}
 {% endblock picture_collection_widget %}

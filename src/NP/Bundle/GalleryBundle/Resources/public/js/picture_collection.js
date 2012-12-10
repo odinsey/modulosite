@@ -12,4 +12,9 @@ jQuery(document).ready(function() {
 	}
     });
     jQuery("#list-photos").disableSelection();
+    
+    jQuery(".delete", ul).click(function() {
+	jQuery(this).parent().parent().parent().remove();
+	ul.sortable('refresh');
+    });
 });

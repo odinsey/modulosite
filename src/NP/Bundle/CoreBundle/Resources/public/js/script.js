@@ -395,12 +395,8 @@ jQuery(document).ready(function() {
                     index = 0;
             }
         };
-
-        if($c.children().length == 0) {
-            add_row();
-        } else {
-            index = $c.children().length;
-        }
+	
+	index = $c.children().length;
 
         jQuery('.add-collection-row', $c.parent()).click(function(e) {
             e.preventDefault();
