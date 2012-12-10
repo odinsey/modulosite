@@ -7,8 +7,8 @@
 	<li id="photo_{{ child.vars.value.id }}" class="thumbnail">
 	    <img src="{{ child.vars.value.url('small') }}" alt="{{ child.vars.value.title }}">
 	    <div class="caption">
-		<p>{{ child.vars.value.title }}</p>
-		<p>
+		<p title="{{ child.vars.value.title }}">{{ child.vars.value.title|truncate(49) }}</p>
+		<p class="actions">
 		    <a role="button" data-toggle="modal" href="#modal_{{ child.vars.value.id }}" class="btn btn-mini btn-primary" title="{{ 'global.form_action.edit'|trans([], 'NPCoreBundle') }}">{{ 'global.form_action.edit'|trans([], 'NPCoreBundle') }}</a>
 		    &nbsp;<a title="{{ 'global.form_action.delete'|trans([], 'NPCoreBundle') }}" class="btn btn-mini btn-danger delete">{{ 'global.form_action.delete'|trans([], 'NPCoreBundle') }}</a>
 		</p>

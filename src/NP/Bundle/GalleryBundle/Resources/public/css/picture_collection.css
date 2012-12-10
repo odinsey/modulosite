@@ -2,13 +2,20 @@
 STYLE DE LA LISTE A TRIER
 ************/
 ul#list-photos li {
-  cursor:move;
+  cursor: move;
   background:#fff;
-  max-width: 140px;
+  width: 140px;
+  height: 170px;
+  display: block;
+  position: relative;
 }
 ul#list-photos li.highlight {
   background:#f2f2f2;
   border:1px dashed #212326;
-  height:160px;
+  height:170px;
   width:140px;
+}
+ul#list-photos .actions {
+    position: absolute;
+    bottom: 0;
 }
