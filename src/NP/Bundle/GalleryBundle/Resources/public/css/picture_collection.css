@@ -4,6 +4,7 @@ STYLE DE LA LISTE A TRIER
 ul#list-photos li {
   cursor:move;
   background:#fff;
+  max-width: 140px;
 }
 ul#list-photos li.highlight {
   background:#f2f2f2;

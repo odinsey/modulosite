@@ -88,3 +88,10 @@ knp_paginator:
         pagination:           KnpPaginatorBundle:Pagination:sliding.html.twig
         sortable:             KnpPaginatorBundle:Pagination:sortable_link.html.twig
     page_range:           5
+
+services:
+    twig.extension.text:
+       class: Twig_Extensions_Extension_Text
+       tags:
+           - { name: twig.extension }
+ 
