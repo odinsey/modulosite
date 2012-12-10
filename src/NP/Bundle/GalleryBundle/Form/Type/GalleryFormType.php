@@ -14,7 +14,7 @@ class GalleryFormType extends AbstractType {
 			->add('pictures', 'picture_collection', array(
 				'type' => new PictureFormType(),
 				'allow_add' => true,
-				'allow_delete' => true,
+				'allow_delete' => false,
 				'by_reference' => false,
 				'attr' => array('class' => 'entity-collections sortable'),
 				//label for each team form type

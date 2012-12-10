@@ -38,6 +38,7 @@ class Gallery {
 
     /**
      * @ORM\OneToMany(targetEntity="Picture", mappedBy="gallery", cascade={"all"}, orphanRemoval=true)
+     * @ORM\OrderBy({"position" = "ASC"})
      */
     protected $pictures;
 
@@ -108,8 +109,7 @@ class Gallery {
      *
      * @return array_collection 
      */
-    public function getPictures() {
-		
+    public function getPictures() {		
 		return $this->pictures;
     }
 

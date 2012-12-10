@@ -11,4 +11,21 @@ use Doctrine\ORM\EntityRepository;
  * repository methods below.
  */
 class GalleryRepository extends EntityRepository {
+    
+    public function deleteOne($id)
+    {
+        $this->deleteGroup(array($id));
+    }
+
+    public function deleteGroup($ids)
+    {
+        $qb = $this->createQueryBuilder('g');
+
+        $qb->delete('NPGalleryBundle:Gallery', 'g')
+                ->where($qb->expr()->in('g.id', $ids))
+                ->getQuery()
+                ->execute();
+
+        $this->_em->flush();
+    }
 }

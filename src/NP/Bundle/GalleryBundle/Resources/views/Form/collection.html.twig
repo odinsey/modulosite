@@ -8,9 +8,7 @@
 		<h3>{{ child.vars.value.title }}</h3>
 		<p>
 		    <a role="button" data-toggle="modal" href="#modal_{{ child.vars.value.id }}" class="btn btn-mini btn-primary" title="{{ 'global.form_action.edit'|trans([], 'NPCoreBundle') }}">{{ 'global.form_action.edit'|trans([], 'NPCoreBundle') }}</a>
-			    {% if allow_delete is defined and allow_delete %}
 		    &nbsp;<a title="{{ 'global.form_action.delete'|trans([], 'NPCoreBundle') }}" class="btn btn-mini btn-danger">{{ 'global.form_action.delete'|trans([], 'NPCoreBundle') }}</a>
-			    {% endif %}
 		<p>
 	    </div>
 	    <div id="modal_{{ child.vars.value.id }}" class="modal hide fade">
@@ -38,12 +36,7 @@
                 {% for child in form %}
 		    <fieldset class="collection-field-row" data-prop="">
 			{{ form_row(child) }}
-                        {% if allow_delete is defined and allow_delete %}
-			    <a href="#" class="delete-collection-row btn">
-                    {{ 'global.form_action.delete' | trans([], 'NPCoreBundle') }}
-				</a>
-                        {% endif %}
-			    </fieldset>
+		    </fieldset>
                 {% endfor %}
 			</div>
         {% if allow_add is defined and allow_add %}
