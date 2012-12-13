@@ -27,7 +27,7 @@
             {% block index_list_other_actions %}
             <div class="other-actions">
                 {% block index_list_other_actions_list %}
-                <a class="btn" href="{{ path(route_new) }}">{{ (translation_prefix ~ '.index.new')|trans([], bundle_name) }}</a>
+                <a class="btn" href="{{ path(route_new) }}">{{ 'global.index.new'|trans([], 'NPCoreBundle') }}</a>
                 {% endblock %}
             </div>
             {% endblock %}
@@ -48,7 +48,7 @@
             <thead>
                 <tr>
                     <th class="groupCheckbox"><input type="checkbox" /></th>
-                    <th>{{ (translation_prefix ~ '.index.name')|trans([], bundle_name) }}</th>
+                    <th>{{ 'global.index.name'|trans([], 'NPCoreBundle') }}</th>
                     <th>{{ 'global.index_crud.actions'|trans([], 'NPCoreBundle') }}</th>
                 </tr>
             </thead>
@@ -77,7 +77,7 @@
                 {% else %}
                 {% block index_list_items_noresult %}
                 <tr class="no-result">
-                    <td colspan="{{ nb_cols }}">{{ (translation_prefix ~ '.index.no_result') |trans([], bundle_name) }}</td>
+                    <td colspan="{{ nb_cols }}">{{ ('global.index.no_result') |trans([], 'NPCoreBundle') }}</td>
                 </tr>
                 {% endblock %}
                 {% endfor %}

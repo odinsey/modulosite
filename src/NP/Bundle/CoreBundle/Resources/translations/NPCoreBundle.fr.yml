@@ -9,6 +9,10 @@ global:
     topbar:
         logout: Se deconnecter
         my_profile: Mon profil
+    index:
+        new: Nouveau
+        no_result: Aucun résultat
+        name: Nom
     index_crud:
         actions: Actions
         group_action:

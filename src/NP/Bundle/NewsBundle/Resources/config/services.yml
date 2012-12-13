@@ -1,0 +1,8 @@
+parameters:
+    np_news.form.type.picture_collection.class: NP\Bundle\GalleryBundle\Form\Extension\Type\PictureCollectionType
+
+services:
+    form.type.picture_collection:
+        class: %np_news.form.type.picture_collection.class%
+        tags:
+            - { name: form.type, alias: picture_collection }
