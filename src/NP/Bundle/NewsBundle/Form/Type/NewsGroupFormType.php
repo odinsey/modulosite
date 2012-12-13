@@ -20,8 +20,9 @@ class NewsGroupFormType extends AbstractType
         $builder->add('action', 'choice', array(
             'choices'   => array(
                 'none'   => '',
-                'publish' =>  $this->translator->trans('core.index.form_group.publish', array(), 'NPCoreBundle'),
-                'delete' => $this->translator->trans('core.index.form_group.delete', array(), 'NPCoreBundle')
+                'publish' =>  $this->translator->trans('global.form_action.group.publish', array(), 'NPCoreBundle'),
+                'unpublish' =>  $this->translator->trans('global.form_action.group.unpublish', array(), 'NPCoreBundle'),
+                'delete' => $this->translator->trans('global.form_action.group.delete', array(), 'NPCoreBundle')
             ),
             'multiple'  => false,
             'attr' => array('class' => 'medium')
