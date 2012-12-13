@@ -7,7 +7,7 @@ homepage:
     prefix: /
     pattern: /
     defaults: { _controller: NPCoreBundle:Dashboard:index }
-    
+
 fos_user_security:
     resource: "@FOSUserBundle/Resources/config/routing/security.xml"
     prefix: /
@@ -33,6 +33,15 @@ fos_user_change_password:
 #    resource: "@FrameworkBundle/Resources/config/routing/internal.xml"
 #    prefix:   /_internal
 
-np_sitemaker_site:
+np_gallery_gallery:
     resource: "@NPGalleryBundle/Resources/config/routing/gallery.yml"
     prefix:   /gallery
+np_gallery_picture:
+    resource: "@NPGalleryBundle/Resources/config/routing/picture.yml"
+    prefix:   /picture
+np_news_news:
+    resource: "@NPNewsBundle/Resources/config/routing/news.yml"
+    prefix:   /news
+#np_resources:
+#    resource: "@NPResourcesBundle/Resources/config/routing/resources.yml"
+#    prefix:   /resources
