@@ -20,11 +20,12 @@ class AppKernel extends Kernel {
 			new JMS\SecurityExtraBundle\JMSSecurityExtraBundle(),
 			new NP\Bundle\CoreBundle\NPCoreBundle(),
 			new NP\Bundle\GalleryBundle\NPGalleryBundle(),
+                        new NP\Bundle\NewsBundle\NPNewsBundle(),
+                        new NP\Bundle\ResourcesBundle\NPResourcesBundle(),
 			new FOS\UserBundle\FOSUserBundle(),
 			new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
 			new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
 			new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
-            new NP\Bundle\NewsBundle\NPNewsBundle(),
 		);
 
 		if(in_array($this->getEnvironment(),array('dev','test'))){

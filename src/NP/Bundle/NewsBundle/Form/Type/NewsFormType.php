@@ -19,7 +19,7 @@ class NewsFormType extends AbstractType {
 				'allow_delete' => true,
 				'by_reference' => false,
 				'attr' => array('class' => 'entity-collections sortable'),
-				//label for each team form type
+				//label for each team form typeretarque
 				'options' => array(
 					'attr' => array('class' => 'entity-collection')
 				))
