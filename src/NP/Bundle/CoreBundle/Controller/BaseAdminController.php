@@ -110,8 +110,8 @@ abstract class BaseAdminController extends Controller {
 
 	$request = $this->getRequest();
 
-	$filter_entiry = (class_exists($this->filter_object_name)) ? new $this->filter_object_name() : null;
-	$filter = $this->getFilterForm($filter_entiry);
+	$filter_entity = (class_exists($this->filter_object_name)) ? new $this->filter_object_name() : null;
+	$filter = $this->getFilterForm($filter_entity);
 
 	$query = $this->getClassRepository()->findAll();
 

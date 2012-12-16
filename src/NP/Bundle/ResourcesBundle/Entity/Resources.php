@@ -10,7 +10,6 @@ use Symfony\Component\Filesystem\Filesystem;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
-use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * Resources
@@ -18,7 +17,6 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="NP\Bundle\ResourcesBundle\Entity\ResourcesRepository")
  * @ORM\HasLifecycleCallbacks
- * @Vich\Uploadable
  */
 class Resources {
     /**
@@ -73,7 +71,6 @@ class Resources {
 
     /**
      * @Assert\File(maxSize="5M")
-     * @Vich\UploadableField(mapping="resources_file", fileNameProperty="path")
      *
      * @var File $file
      */
