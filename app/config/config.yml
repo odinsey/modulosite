@@ -57,7 +57,7 @@ doctrine:
                 prefix: Gedmo\Sortable\Entity
                 # make sure vendor library location is correct
                 dir: "%kernel.root_dir%/../vendor/gedmo/doctrine-extensions/lib/Gedmo/Sortable/Entity"
-        
+
 stof_doctrine_extensions:
     default_locale: fr_FR
     orm:
@@ -94,4 +94,3 @@ services:
        class: Twig_Extensions_Extension_Text
        tags:
            - { name: twig.extension }
- 

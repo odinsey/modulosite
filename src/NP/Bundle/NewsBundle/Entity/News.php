@@ -18,7 +18,8 @@ class News {
      * Hook timestampable behavior
      * updates createdAt, updatedAt fields
      */
-    use TimestampableEntity;
+
+use TimestampableEntity;
 
     /**
      * @var integer
@@ -51,20 +52,39 @@ class News {
     private $published;
 
     /**
-     * @ORM\OneToMany(targetEntity="\NP\Bundle\GalleryBundle\Entity\Picture", mappedBy="news", cascade={"all"}, orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="Picture", mappedBy="parent", cascade={"all"}, orphanRemoval=true)
      * @ORM\OrderBy({"position" = "ASC"})
      */
     protected $pictures;
 
     public function __construct() {
-	$this->pictures = new ArrayCollection();
+        $this->pictures = new ArrayCollection();
     }
 
     /*
      * @return string
      */
+
     public function __toString() {
-	return $this->title;
+        return $this->title;
+    }
+
+    /**
+     * Get published
+     *
+     * @return boolean
+     */
+    public function getPublished() {
+        return $this->published;
+    }
+
+    /**
+     * Set published
+     *
+     * @return boolean
+     */
+    public function setPublished($published) {
+        $this->published = $published;
     }
 
     /**
@@ -73,15 +93,16 @@ class News {
      * @return boolean
      */
     public function isPublished() {
-	return $this->published ? true : false;
+        return $this->published ? true : false;
     }
+
     /**
      * Get id
      *
      * @return integer
      */
     public function getId() {
-	return $this->id;
+        return $this->id;
     }
 
     /**
@@ -90,7 +111,7 @@ class News {
      * @return string
      */
     public function getTitle() {
-	return $this->title;
+        return $this->title;
     }
 
     /**
@@ -100,9 +121,9 @@ class News {
      * @return News
      */
     public function setTitle($title) {
-	$this->title = $title;
+        $this->title = $title;
 
-	return $this;
+        return $this;
     }
 
     /**
@@ -111,7 +132,7 @@ class News {
      * @return string
      */
     public function getDescription() {
-	return $this->description;
+        return $this->description;
     }
 
     /**
@@ -121,9 +142,9 @@ class News {
      * @return News
      */
     public function setDescription($description) {
-	$this->description = $description;
+        $this->description = $description;
 
-	return $this;
+        return $this;
     }
 
     /**
@@ -132,30 +153,30 @@ class News {
      * @return array_collection
      */
     public function getPictures() {
-		return $this->pictures;
+        return $this->pictures;
     }
 
     /**
      * Add picture
      *
-     * @param \NP\Bundle\GalleryBundle\Entity\Picture $picture
+     * @param \NP\Bundle\NewsBundle\Entity\Picture $picture
      */
-    public function addPicture(Picture $picture) {
-	if (!$this->pictures->contains($picture)) {
-	    $picture->setNews($this);
-	    $this->pictures->add($picture);
-	}
+    public function addPicture(\NP\Bundle\NewsBundle\Entity\Picture $picture) {
+        if (!$this->pictures->contains($picture)) {
+            $picture->setParent($this);
+            $this->pictures->add($picture);
+        }
     }
 
     /**
      * Remove picture
      *
-     * @param \NP\Bundle\GalleryBundle\Entity\Picture $picture
+     * @param \NP\Bundle\NewsBundle\Entity\Picture $picture
      */
     public function removePicture(Picture $picture) {
-	if ($this->pictures->contains($picture)) {
-	    $this->pictures->removeElement($picture);
-	}
+        if ($this->pictures->contains($picture)) {
+            $this->pictures->removeElement($picture);
+        }
     }
 
 }

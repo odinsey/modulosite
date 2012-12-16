@@ -37,7 +37,7 @@ class Gallery {
     private $description;
 
     /**
-     * @ORM\OneToMany(targetEntity="Picture", mappedBy="gallery", cascade={"all"}, orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="Picture", mappedBy="parent", cascade={"all"}, orphanRemoval=true)
      * @ORM\OrderBy({"position" = "ASC"})
      */
     protected $pictures;
@@ -45,7 +45,7 @@ class Gallery {
     public function __construct() {
 	$this->pictures = new ArrayCollection();
     }
-    
+
     /*
      * @return string
      */
@@ -56,7 +56,7 @@ class Gallery {
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId() {
 	return $this->id;
@@ -65,7 +65,7 @@ class Gallery {
     /**
      * Get title
      *
-     * @return string 
+     * @return string
      */
     public function getTitle() {
 	return $this->title;
@@ -86,7 +86,7 @@ class Gallery {
     /**
      * Get description
      *
-     * @return string 
+     * @return string
      */
     public function getDescription() {
 	return $this->description;
@@ -107,9 +107,9 @@ class Gallery {
     /**
      * Get pictures
      *
-     * @return array_collection 
+     * @return array_collection
      */
-    public function getPictures() {		
+    public function getPictures() {
 		return $this->pictures;
     }
 
@@ -120,7 +120,7 @@ class Gallery {
      */
     public function addPicture(Picture $picture) {
 	if (!$this->pictures->contains($picture)) {
-	    $picture->setGallery($this);
+	    $picture->setParent($this);
 	    $this->pictures->add($picture);
 	}
     }

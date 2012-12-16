@@ -1,0 +1,29 @@
+np_resources_resources_index:
+    pattern: /
+    defaults: { _controller: NPResourcesBundle:Resources:index }
+
+np_resources_resources_show:
+    pattern: /{id}/show
+    defaults: { _controller: NPResourcesBundle:Resources:show }
+    requirements:
+      id: \d+
+
+np_resources_resources_new:
+    pattern: /new
+    defaults: { _controller: NPResourcesBundle:Resources:new }
+
+np_resources_resources_edit:
+    pattern: /{id}/edit
+    defaults: { _controller: NPResourcesBundle:Resources:edit }
+    requirements:
+      id: \d+
+
+np_resources_resources_delete:
+    pattern: /{id}/delete
+    defaults: { _controller: NPResourcesBundle:Resources:delete }
+    requirements:
+      id: \d+
+
+np_resources_resources_groupprocess:
+    pattern: /groupprocess
+    defaults: { _controller: NPResourcesBundle:Resources:groupProcess }

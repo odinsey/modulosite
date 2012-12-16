@@ -1,6 +1,6 @@
 <?php
 
-namespace NP\Bundle\GalleryBundle\Entity;
+namespace NP\Bundle\NewsBundle\Entity;
 
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Gedmo\Mapping\Annotation as Gedmo;
@@ -16,8 +16,8 @@ use Imagine\Image\ImageInterface;
 /**
  * Picture
  *
- * @ORM\Table("gallery_picture")
- * @ORM\Entity(repositoryClass="NP\Bundle\GalleryBundle\Entity\PictureRepository")
+ * @ORM\Table("news_picture")
+ * @ORM\Entity(repositoryClass="NP\Bundle\NewsBundle\Entity\PictureRepository")
  * @ORM\HasLifecycleCallbacks
  */
 class Picture {
@@ -58,10 +58,10 @@ use TimestampableEntity;
     private $position;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Gallery", inversedBy="pictures")
+     * @ORM\ManyToOne(targetEntity="News", inversedBy="pictures")
      * @ORM\JoinColumn(onDelete="SET NULL")
      *
-     * @var Gallery
+     * @var News
      */
     private $parent;
 
@@ -187,21 +187,21 @@ use TimestampableEntity;
     }
 
     /**
-     * Set gallery
+     * Set news
      *
-     * @param \NP\Bundle\GalleryBundle\Entity\Gallery $gallery
+     * @param \NP\Bundle\NewsBundle\Entity\News $news
      * @return Picture
      */
-    public function setParent($gallery = null) {
-	$this->parent = $gallery;
+    public function setParent($news = null) {
+	$this->parent = $news;
 
 	return $this;
     }
 
     /**
-     * Get gallery
+     * Get news
      *
-     * @return \NP\Bundle\GalleryBundle\Entity\Gallery
+     * @return \NP\Bundle\NewsBundle\Entity\News
      */
     public function getParent() {
 	return $this->parent;
@@ -212,7 +212,7 @@ use TimestampableEntity;
     }
 
     public function getFolderName() {
-	return sprintf('gallery-%d', $this->getParent()->getId());
+	return sprintf('news-%d', $this->getParent()->getId());
     }
 
     /**

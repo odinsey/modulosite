@@ -42,6 +42,6 @@ np_gallery_picture:
 np_news_news:
     resource: "@NPNewsBundle/Resources/config/routing/news.yml"
     prefix:   /news
-np_resources:
+np_resources_resources:
     resource: "@NPResourcesBundle/Resources/config/routing/resources.yml"
     prefix:   /resources

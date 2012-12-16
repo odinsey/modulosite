@@ -1,0 +1,9 @@
+global.form_action.edit: __global.form_action.edit
+global.form_action.delete: __global.form_action.delete
+global.form_action.confirm: __global.form_action.confirm
+global.form_action.add: __global.form_action.add
+global.form_action.save: __global.form_action.save
+global.form_action.save_and_add: __global.form_action.save_and_add
+global.form_action.back_to_list: __global.form_action.back_to_list
+global.form_action.update: __global.form_action.update
+global.form_action.are_you_sure: __global.form_action.are_you_sure

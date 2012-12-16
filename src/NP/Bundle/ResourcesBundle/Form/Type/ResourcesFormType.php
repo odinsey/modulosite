@@ -1,39 +1,28 @@
 <?php
 
-namespace NP\Bundle\NewsBundle\Form\Type;
+namespace NP\Bundle\ResourcesBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use NP\Bundle\NewsBundle\Form\Type\PictureFormType;
 
-class NewsFormType extends AbstractType {
+class ResourcesFormType extends AbstractType {
 
 	public function buildForm(FormBuilderInterface $builder, array $options){
 		$builder->add('title', null, array('label' => 'Nom'))
 			->add('description', 'richeditor', array('label' => 'Description'))
 			->add('published', null, array('label' => 'Publié', 'required'=>false))
-			->add('pictures', 'picture_collection', array(
-				'type' => new PictureFormType(),
-				'allow_add' => true,
-				'allow_delete' => true,
-				'by_reference' => false,
-				'attr' => array('class' => 'entity-collections sortable'),
-				//label for each team form typeretarque
-				'options' => array(
-					'attr' => array('class' => 'entity-collection')
-				))
-		);
+                        ->add('file');
 	}
 
 	public function setDefaultOptions(OptionsResolverInterface $resolver){
 		$resolver->setDefaults(array(
-			'data_class' => 'NP\Bundle\NewsBundle\Entity\News',
+			'data_class' => 'NP\Bundle\ResourcesBundle\Entity\Resources',
 			'cascade_validation' => true
 		));
 	}
 
 	public function getName(){
-		return 'np_news_news';
+		return 'np_resources_resources';
 	}
 }

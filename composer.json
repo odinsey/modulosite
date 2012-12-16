@@ -23,9 +23,8 @@
 		"stof/doctrine-extensions-bundle": "1.1.x-dev",
 		"friendsofsymfony/user-bundle": "*",
 		"doctrine/doctrine-fixtures-bundle": "dev-master",
-		"bzoote/bsky-parameter-bundle": "dev-master",
-		"knplabs/knp-paginator-bundle": "dev-master",
-		"avalanche123/imagine-bundle": "dev-master"
+		"avalanche123/imagine-bundle": "dev-master",
+		"knplabs/knp-paginator-bundle": "dev-master"
 	},
 	"scripts": {
 		"post-install-cmd": [

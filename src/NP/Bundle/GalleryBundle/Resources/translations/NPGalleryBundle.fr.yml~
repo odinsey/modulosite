@@ -1,14 +1,16 @@
 gallery:
+    index:
+        title: 'Liste des galeries photo'
     edit:
-        title: Edition de la galerie
+        title: 'Edition de la galerie photo'
     new:
-        title: Nouvelle galerie
+        title: 'Nouvelle galerie photo'
     flash:
         success:
-            delete: Galerie suprimée avec succès
-            new: Galerie créée avec succès
-            edit: Galerie modifiée avec succès
+            delete: 'Galerie suprimée avec succès'
+            new: 'Galerie créée avec succès'
+            edit: 'Galerie modifiée avec succès'
         error:
-            delete: Une erreur est survenue pendant la suppression.
-            new: Une erreur est survenue, aucune galerie n'a été créée
-            edit: Une erreur est survenue pendant la modification, veuillez vérifier les champs.
+            delete: 'Une erreur est survenue pendant la suppression.'
+            new: 'Une erreur est survenue, aucune galerie n''a été créée'
+            edit: 'Une erreur est survenue pendant la modification, veuillez vérifier les champs.'

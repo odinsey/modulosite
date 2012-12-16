@@ -9,13 +9,11 @@
 <div class="navbar navbar-fixed-top">
     <div class="navbar-inner">
         <div class="container">
-            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </a>
             <a href="{{ path('homepage') }}" class="brand">ModuloSite</a>
-            <a href="{{ path('homepage') }}logout" class="logout">Se déconnecter</a>
+            <a href="{{ path('np_gallery_gallery_index') }}" class="brand">Galeries</a>
+            <a href="{{ path('np_news_news_index') }}" class="brand">Actualités</a>
+            <a href="{{ path('np_resources_resources_index') }}" class="brand">Ressources</a>
+            <a href="{{ path('fos_user_security_logout') }}logout" class="logout">Se déconnecter</a>
         </div>
     </div><!-- /navbar-inner -->
 </div>
@@ -23,8 +21,8 @@
     <div class="bcontent">
         <div class="fill">
             {% if app.session.hasFlash('notice')
-                or app.session.hasFlash('error') 
-                or app.session.hasFlash('success') 
+                or app.session.hasFlash('error')
+                or app.session.hasFlash('success')
                 or app.session.hasFlash('info') %}
             <div>
                 {% if app.session.hasFlash('notice') %}
