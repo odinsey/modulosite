@@ -1,12 +1,12 @@
 <?php
   class filters
   {
-  	
-    function noise (&$image, $runs = 30)
-    {    	
+
+    function noise ($image, $runs = 30)
+    {
 	  $w = imagesx($image);
 	  $h = imagesy($image);
-  
+
       for ($n = 0; $n < $runs; $n++)
       {
         for ($i = 1; $i <= $h; $i++)
@@ -21,43 +21,43 @@
                         mt_rand(1, $h),
                         $randcolor);
         }
-      }    
+      }
     } //noise
-    
-    function signs (&$image, $font, $cells = 3)
-    {   	
+
+    function signs ($image, $font, $cells = 3)
+    {
 	  $w = imagesx($image);
 	  $h = imagesy($image);
 
    	  for ($i = 0; $i < $cells; $i++)
-   	  {   	  	   	  	
+   	  {
    	  	$centerX     = mt_rand(1, $w);
    	  	$centerY     = mt_rand(1, $h/2);
    	  	$amount      = mt_rand(1, 15);
         $stringcolor = imagecolorallocate($image, 175, 175, 175);
-   	  	
+
    	  	for ($n = 0; $n < $amount; $n++)
    	  	{
           $signs = range('A', 'Z');
           $sign  = $signs[mt_rand(0, count($signs) - 1)];
 
-   	  	  imagettftext($image, 25, 
-   	  	               mt_rand(-15, 15), 
+   	  	  imagettftext($image, 25,
+   	  	               mt_rand(-15, 15),
    	  	               $centerX + mt_rand(-5, 5),
    	  	               $centerY + mt_rand(-10, 10),
-   	  	               $stringcolor, $font, $sign);   	  	
-   	  	}   	  	
-   	  }   	
+   	  	               $stringcolor, $font, $sign);
+   	  	}
+   	  }
     } //signs
-    
-    
-    function blur (&$image, $radius = 3)
+
+
+    function blur ($image, $radius = 3)
     {
 	  $radius  = round(max(0, min($radius, 50)) * 2);
 
 	  $w       = imagesx($image);
 	  $h       = imagesy($image);
-	  
+
 	  $imgBlur = imagecreate($w, $h);
 
 	  for ($i = 0; $i < $radius; $i++)
@@ -75,9 +75,9 @@
 		imagecopy     ($image  , $imgBlur, 0, 0, 0, 0, $w,     $h);
 
 	  }
-	  
+
 	  imagedestroy($imgBlur);
-	  
+
     } //blur
 
   } //class: filters
