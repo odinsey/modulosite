@@ -30,6 +30,7 @@ use TimestampableEntity;
 
     protected static $FILE_TYPES = array(
 	'small' => array('width' => 90, 'height' => 78, 'thumbnail_type' => ImageInterface::THUMBNAIL_OUTBOUND),
+	'thumb' => array('width' => 150, 'height' => 113, 'thumbnail_type' => ImageInterface::THUMBNAIL_OUTBOUND),
 	'medium' => array('width' => 233, 'height' => 155, 'thumbnail_type' => ImageInterface::THUMBNAIL_OUTBOUND),
 	'big' => array('width' => 1024, 'height' => 768, 'thumbnail_type' => ImageInterface::THUMBNAIL_INSET)
     );

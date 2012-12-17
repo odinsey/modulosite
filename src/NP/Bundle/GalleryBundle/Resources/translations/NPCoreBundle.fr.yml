@@ -1,9 +1,52 @@
-global.form_action.edit: __global.form_action.edit
-global.form_action.delete: __global.form_action.delete
-global.form_action.confirm: __global.form_action.confirm
-global.form_action.add: __global.form_action.add
-global.form_action.save: __global.form_action.save
-global.form_action.save_and_add: __global.form_action.save_and_add
-global.form_action.back_to_list: __global.form_action.back_to_list
-global.form_action.update: __global.form_action.update
-global.form_action.are_you_sure: __global.form_action.are_you_sure
+global.form_action.delete: Supprimer
+global.form_action.add: Ajouter
+global.ajax.loading: 'Chargement ...'
+global.ajax.error: 'Une erreur est survenue'
+global.ajax.success: Ok
+global.index_crud.filter.submit: Filtrer
+global.index.new: Nouveau
+global.index_crud.group_action.submit: Exécuter
+global.index.name: Nom
+global.index_crud.actions: Actions
+global.form_action.edit: Editer
+global.index.no_result: 'Aucun résultat'
+global.form_action.save: Enregistrer
+global.form_action.save_and_add: 'Sauvegarder et ajouter'
+global.form_action.back_to_list: 'Retour à la liste'
+global.form_action.update: Modifier
+global.form_action.are_you_sure: 'Êtes-vous sûr ?'
+global.pagination.previous: Précedent
+global.pagination.next: Suivant
+global.topbar.logout: 'Se deconnecter'
+global.topbar.my_profile: 'Mon profil'
+global.index_calendar.prev_month: 'Mois précédent'
+global.index_calendar.next_month: 'Mois suivant'
+global.index_calendar.from_to: 'Du %start% au %end%'
+global.form_action.approve: Approuver
+global.form_action.disapprove: Désapprouver
+global.form_action.show: Afficher
+global.form_action.preview: Prévisualiser
+global.form_action.save_order: 'Enregistrer l''ordre'
+global.form_action.close: Fermer
+global.form_action.cancel: Annuler
+global.form_action.confirm: Ok
+global.form_action.group.approve: Approuver
+global.form_action.group.disapprove: Désapprouver
+global.form_action.group.delete: Supprimer
+global.form_action.group.publish: Publier
+global.form_action.group.unpublish: Dépublier
+global.form_action.group.disable: Désactiver
+global.form_action.group.enable: Activer
+login.byatelier45: 'par Atelier45'
+login.label.username: 'Nom d''utilisateur'
+login.label.password: 'Mot de passe'
+login.label.remember_me: 'Se souvenir de moi'
+login.label.submit: 'Se connecter'
+site.edit.title: 'Edition du site'
+site.new.title: 'Nouveau site'
+site.flash.success.delete: 'Site suprimé avec succès'
+site.flash.success.new: 'Site créé avec succès'
+site.flash.success.edit: 'Site modifié avec succès'
+site.flash.error.delete: 'Une erreur est survenue pendant la suppression. Vérifiez les droits sur les dossiers'
+site.flash.error.new: 'Une erreur est survenue, aucun site n''a été créé'
+site.flash.error.edit: 'Une erreur est survenue pendant la modification, veuillez vérifier les champs.'

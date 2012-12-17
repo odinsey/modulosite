@@ -4,7 +4,7 @@
     {{ form_errors(form) }}
     <ul id="list-photos" class="thumbnails">
 	{% for child in form %}
-	<li id="photo_{{ child.vars.value.id }}" class="thumbnail">
+	<li id="photo_{{ child.vars.value.id }}" class="thumbnail collection-field">
 	    <img src="{{ child.vars.value.url('small') }}" alt="{{ child.vars.value.title }}">
 	    <div class="caption">
 		<p title="{{ child.vars.value.title }}">{{ child.vars.value.title|truncate(49) }}</p>

@@ -16,7 +16,7 @@ class NewsController extends BaseAdminController {
     public function listAction() {
         $repository = $this->getDoctrine()->getRepository($this->doctrine_namespace);
         $request = $this->getRequest();
-        $items = $repository->findAll();
+        $items = $repository->findByPublished(1);
         //$items = $repository->findPage($request->query->get('page'), $request->query->get('limit'));
         // the line above would work provided you have created "findPage" function in your repository
         // yes, here we are retrieving "_format" from routing. In our case it's json
@@ -28,7 +28,7 @@ class NewsController extends BaseAdminController {
             foreach ($item->getPictures() as $picture) {
                 $pictures[] = array(
                     'title' => $picture->getTitle(),
-                    'imgmedium' => $picture->getUrl('medium'),
+                    'imgmedium' => $picture->getUrl('thumb'),
                     'imgfull' => $picture->getUrl('big')
                 );
             }

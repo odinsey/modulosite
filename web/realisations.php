@@ -70,9 +70,9 @@
                             jQuery.each(string, function(i, gallery) {
                                 html += '<div class="actualite-gauche"><div class="vignette-actualites">';
                                 jQuery.each(gallery['pictures'], function(i, picture) {
-                                   html += '<a href="'+picture['imgfull']+'" rel=shadowbox['+gallery['title']+']"><img src="'+picture['imgmedium']+'" alt="'+picture['title']+'" /></a>';
+                                   html += '<a href="'+picture['imgfull']+'" title="'+picture['title']+'" rel="shadowbox['+gallery['title']+']"></a>';
                                    if(i==0){
-                                        html += '</div>';
+                                        html += '<img src="'+picture['imgmedium']+'" alt="'+picture['title']+'" /></div>';
                                    }
                                 });
                                 html += '</div><div class="actualites-droite">';
