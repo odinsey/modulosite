@@ -3,18 +3,17 @@
 namespace NP\Bundle\NewsBundle\Controller;
 
 use NP\Bundle\CoreBundle\Controller\BaseAdminController;
-
 use Symfony\Component\Serializer\Serializer;
 use Symfony\Component\Serializer\Normalizer\GetSetMethodNormalizer;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
 
-class NewsController extends BaseAdminController
-{
+class NewsController extends BaseAdminController {
+
     protected $doctrine_namespace = "NPNewsBundle:News";
     protected $template_new = 'NPGalleryBundle:CRUD:new.html.twig';
     protected $template_edit = 'NPGalleryBundle:CRUD:edit.html.twig';
 
-        public function listAction() {
+    public function listAction() {
         $repository = $this->getDoctrine()->getRepository($this->doctrine_namespace);
         $request = $this->getRequest();
         $items = $repository->findAll();
@@ -24,17 +23,17 @@ class NewsController extends BaseAdminController
         $format = $request->getRequestFormat();
         $datas = array();
 
-        foreach( $items as $item ) {
+        foreach ($items as $item) {
             $pictures = array();
-            foreach( $item->getPictures() as $picture ){
+            foreach ($item->getPictures() as $picture) {
                 $pictures[] = array(
                     'title' => $picture->getTitle(),
                     'imgmedium' => $picture->getUrl('medium'),
-                    'imgfull'   => $picture->getUrl('big')
+                    'imgfull' => $picture->getUrl('big')
                 );
             }
             $datas[] = array(
-                'title'=> $item->getTitle(),
+                'title' => $item->getTitle(),
                 'description' => $item->getDescription(),
                 'pictures' => $pictures
             );
@@ -44,6 +43,7 @@ class NewsController extends BaseAdminController
         $serializer = new Serializer(array(new GetSetMethodNormalizer()), array('json' => new JsonEncoder()));
         $json = $serializer->serialize($datas, 'json');
 
-        return $this->render('::base.'.$format.'.twig', array('data' => $json));
+        return $this->render('::base.' . $format . '.twig', array('data' => $json));
     }
+
 }

@@ -1,3 +1,7 @@
+np_resources_resources_json_list:
+    pattern:  /resources.{format}
+    defaults: { _controller: NPResourcesBundle:Resources:list, _format: json }
+
 np_resources_resources_index:
     pattern: /
     defaults: { _controller: NPResourcesBundle:Resources:index }

@@ -1,8 +1,3 @@
-np_news:
-    resource: "@NPNewsBundle/Controller/"
-    type:     annotation
-    prefix:   /
-
 homepage:
     prefix: /
     pattern: /
@@ -36,21 +31,12 @@ fos_user_change_password:
 np_gallery_gallery:
     resource: "@NPGalleryBundle/Resources/config/routing/gallery.yml"
     prefix:   /gallery
-np_gallery_list:
-    pattern:  /gallery.{format}
-    defaults: { _controller: NPGalleryBundle:Gallery:list, _format: json }
 np_gallery_picture:
     resource: "@NPGalleryBundle/Resources/config/routing/picture.yml"
     prefix:   /picture
 np_news_news:
     resource: "@NPNewsBundle/Resources/config/routing/news.yml"
     prefix:   /news
-np_news_list:
-    pattern:  /news.{format}
-    defaults: { _controller: NPNewsBundle:News:list, _format: json }
 np_resources_resources:
     resource: "@NPResourcesBundle/Resources/config/routing/resources.yml"
     prefix:   /resources
-np_resources_list:
-    pattern:  /resources.{format}
-    defaults: { _controller: NPResourcesBundle:Resources:list, _format: json }
