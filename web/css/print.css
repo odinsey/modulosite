@@ -1,0 +1,39 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+
+}
+
+body{
+	background: #FFF url() no-repeat center top;
+}
+
+
+
+#map_loc, #site{
+	display:block;
+	width:100%;
+	}
+#map_loc *{
+	display:block;
+	}
+	
+#titre, #menu, #player, #centre, #col1, #col2, #footer, #pomme, #samt, #header, #animation, #adresse, #courrier, .bloc-formulaire{
+display:none;
+}	
+#map_loc{
+	width:500px; 
+	height:500px; 
+	border:#333333 solid 1px; 
+	padding:4px; 
+	color:#000;
+}
+#map_loc *{color:#81150E;}

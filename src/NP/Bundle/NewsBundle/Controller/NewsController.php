@@ -29,8 +29,8 @@ class NewsController extends BaseAdminController
             foreach( $item->getPictures() as $picture ){
                 $pictures[] = array(
                     'title' => $picture->getTitle(),
-                    'img-medium' => $picture->getUrl('medium'),
-                    'img-full'   => $picture->getUrl('big')
+                    'imgmedium' => $picture->getUrl('medium'),
+                    'imgfull'   => $picture->getUrl('big')
                 );
             }
             $datas[] = array(

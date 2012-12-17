@@ -1,0 +1,405 @@
+
+@import url(default.css);
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:13px;
+	color:#83746a;
+	color:#b7aba3;
+	
+	text-align:justify;
+	line-height:1.2;
+
+}
+
+body{
+	background:url(../images/pattern-coraloisir.jpg);
+	}
+	
+#ombre-wrapper{
+	width:100%;
+	height:584px;
+	background:url(../images/wrapper.png) repeat-x;
+	}	
+	
+#menu{
+	width:980px;
+	height:138px;
+	margin:auto;
+	}	
+	
+#menu li,
+#menu ul{
+	margin:0;
+	padding:0;
+	list-style:none;
+	}
+	
+#menu a{
+	display:block;
+	width:100%;
+	height:138px;
+	}	
+	
+#logo{
+	width:195px;
+	height:138px;
+	background:url(../images/logo.png) top;
+	float:left;
+	}	
+
+#logo:hover{background:url(../images/logo.png) bottom;}
+
+#menu-produits{
+	width:197px;
+	height:138px;
+	background:url(../images/menu-produits.png) top;
+	float:left;
+	} 
+	
+#menu-produits:hover{background:url(../images/menu-produits.png) bottom;}
+	
+#menu-histoirique{
+	width:193px;
+	height:138px;
+	background:url(../images/menu-histoire.png) top;
+	float:left;
+	} 
+
+#menu-histoirique:hover{background:url(../images/menu-histoire.png) bottom;}
+
+#menu-savoir{
+	width:199px;
+	height:138px;
+	background:url(../images/menu-savoir.png) top;
+	float:left;
+	} 
+	
+#menu-savoir:hover{background:url(../images/menu-savoir.png) bottom;}
+
+#menu-realisations{
+	width:196px;
+	height:138px;
+	background:url(../images/menu-realisation.png) top;
+	float:left;
+	} 
+	
+#menu-realisations:hover{background:url(../images/menu-realisation.png) bottom;}
+
+	
+#header{
+	width:1067px;
+	height:446px;
+	margin:auto;
+	}
+
+#site{
+	width:980px;
+	margin:auto;
+	}
+	
+#menu2{
+	width:980px;
+	height:72px;
+	}	
+	
+#menu2 li,
+#menu2 ul{
+	margin:0;
+	padding:0;
+	list-style:none;
+	}
+	
+#menu2 a{
+	display:block;
+	width:100%;
+	height:72px;
+	}	
+#menu-actualites{
+	width:323px;
+	height:72px;
+	background:url(../images/menu-actualites.png) top;
+	float:left;
+	} 
+	
+#menu-actualites:hover{background:url(../images/menu-actualites.png) bottom;}
+
+#menu-livre{
+	width:337px;
+	height:72px;
+	background:url(../images/menu-livre.png) top;
+	float:left;
+	} 
+
+#menu-livre:hover{background:url(../images/menu-livre.png) bottom;} 
+
+#menu-contact{
+	width:320px;
+	height:72px;
+	background:url(../images/menu-contact.png) top;
+	float:left;
+	} 
+
+#menu-contact:hover{background:url(../images/menu-contact.png) bottom;} 
+
+#contenu{
+	width:904px;
+	background:#26170e;
+	padding:33px 38px 38px 38px;
+	}
+
+
+#footer{
+	width:904px;
+	margin:22px auto;
+	height:42px;
+	background:#26170e;
+	padding:10px 38px 0 38px;
+	}
+
+#adresse-coraloisirs{
+	width:632px;
+	height:42px;
+	background:url(../images/adresse.jpg) top;
+	float:left;
+	}
+	
+#menu-mentions{
+	width:125px;
+	height:42px;
+	background:url(../images/mentions.jpg) top;
+	float:left;
+	}	
+
+#menu-reglementation{
+	width:147px;
+	height:42px;
+	background:url(../images/reglementation.jpg) top;
+	float:left;
+	}	
+#footer li,
+#footer ul{
+	margin:0;
+	padding:0;
+	list-style:none;
+	}
+
+#footer a{
+	display:block;
+	width:100%;
+	height:42px;
+	
+	}	
+
+
+.actualite-gauche{
+	clear:both;
+	width:184px;
+	float:left;
+	}
+	
+.actualites-droite{
+	width:704px;
+	float:left;
+	}
+	
+.actualites-droite-2{
+	width:672px;
+	float:left;
+	}
+	
+	
+.vignette-actualites{
+	margin:16px 28px 0 0;
+	width:150px;
+	height:113px;
+	position:relative;
+	z-index:10;
+	float:left;
+	padding:3px;
+	border:#666 1px solid;
+	}
+	
+.vignette-actualites a{
+	display:block;
+	width:150px;
+	height:113px;
+	position:absolute;
+	z-index:20;
+	background:url(../images/coin-03.png) right bottom no-repeat;
+	bottom:0;
+	right:0;
+	}
+	
+.vignette-actualites a:hover{
+	background:url(../images/coin-04.png) right bottom no-repeat;
+	}	
+
+.lire-suite{
+	cursor:pointer;
+	background:url(../images/trois-points.png) bottom right no-repeat;
+	padding:0 0 42px 0;	
+	}	
+	
+.lire-suite:hover{
+	color:#d1c6ba;
+
+	}	
+	
+.lien-actualites{
+	float:right;
+	}
+
+
+.vignette{
+	margin:16px 28px 0 0;
+	width:150px;
+	height:113px;
+	position:relative;
+	z-index:10;
+	float:left;
+	padding:3px;
+	border:#666 1px solid;
+	}
+	
+.vignette a{
+	display:block;
+	width:150px;
+	height:113px;
+	position:absolute;
+	z-index:20;
+	background:url(../images/coin-03.png) right bottom no-repeat;
+	bottom:0;
+	right:0;
+	}
+	
+.vignette a:hover{
+	background:url(../images/coin-04.png) right bottom no-repeat;
+	}	
+
+.vignette-fin{
+	margin-right:0;
+	}
+
+
+
+
+
+
+
+
+
+h1 {
+	margin:0;
+	}
+
+h2 {
+	font-size:16px;
+	font-weight:normal;
+	color:#F5EBEB;
+	}
+
+p {
+	font-size:1em;
+	}
+
+
+ul li{
+	list-style-image:url(../images/puce.jpg);
+	list-style-position:outside;
+	margin:0 0 0 24px;
+	}
+
+a:link, a:visited {text-decoration:underline; color:#d1c6ba;}
+a:hover {text-decoration:none; color: #b7aba3;}
+
+.paragrapheOnOff{
+	cursor:pointer;
+	background:url(../images/accordeon_off.jpg) no-repeat;
+	width:858px;
+	height:26px;
+	color:#26170e;
+	padding:4px 0 0 46px;
+	font-size:16px;
+	}
+
+.close{
+	background:url(../images/accordeon_off.jpg) top no-repeat;
+	}	
+	
+.close:hover{
+	background:url(../images/accordeon_off.jpg) bottom no-repeat;
+	}	
+	
+.open{
+	background:url(../images/accordeon_on.jpg) top no-repeat;
+	}	
+
+.open:hover{
+	background:url(../images/accordeon_on.jpg) bottom no-repeat;
+	}	
+	
+.accordeon{
+	padding:0 0 0 46px;
+	}	
+
+#w3c{
+	width:200px;
+	margin:auto;
+	}	
+	
+#w3c p{
+	float:left;
+	margin:0 10px 0 0;
+	}	
+	
+	
+#captreload img{
+	cursor:pointer;
+	}
+	
+#formulaire-contact{
+	width:434px;
+	float:left;
+	}
+	
+#adresse-contact{
+	width:460px;
+	float:left;
+	}	
+#atelier-45{
+	width:440px;
+	height:726px;
+	padding:2px;
+	border:1px solid #ccc;
+	}
+	
+.gris{
+	color:#333;
+	}	
+		
+.vignette130{
+	float:left;
+	margin:6px 12px 6px 0;
+	border:#26170E 1px solid;
+	border:#fff 1px solid;
+	padding:1px;
+	}
+
+.vignette130:hover{
+	border:#fff 1px solid;
+	padding:0;
+	}
+	
+.vignette130fin{
+	margin:6px 0px 6px 0;
+	}	
+	

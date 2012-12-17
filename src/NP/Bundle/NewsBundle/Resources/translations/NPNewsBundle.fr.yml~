@@ -1,0 +1,16 @@
+news:
+    index:
+        title: 'Liste des actualités'
+    edit:
+        title: 'Edition de l'' actualités'
+    new:
+        title: 'Nouvelle actualité'
+    flash:
+        success:
+            delete: 'Actualité suprimée avec succès'
+            new: 'Actualité créée avec succès'
+            edit: 'Actualité modifiée avec succès'
+        error:
+            delete: 'Une erreur est survenue pendant la suppression.'
+            new: 'Une erreur est survenue, aucune actualité n''a été créée'
+            edit: 'Une erreur est survenue pendant la modification, veuillez vérifier les champs.'

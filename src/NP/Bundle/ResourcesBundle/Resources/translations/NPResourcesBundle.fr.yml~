@@ -1,0 +1,16 @@
+resources:
+    index:
+        title: 'Liste des fichiers téléchargeables'
+    edit:
+        title: 'Edition du fichier téléchargeables'
+    new:
+        title: 'Nouveau fichier téléchargeable'
+    flash:
+        success:
+            delete: 'Fichier suprimée avec succès'
+            new: 'Fichier créée avec succès'
+            edit: 'Fichier modifiée avec succès'
+        error:
+            delete: 'Une erreur est survenue pendant la suppression.'
+            new: 'Une erreur est survenue, aucun fichier n''a été créé'
+            edit: 'Une erreur est survenue pendant la modification, veuillez vérifier les champs.'

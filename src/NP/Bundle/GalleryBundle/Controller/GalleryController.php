@@ -34,8 +34,8 @@ class GalleryController extends BaseAdminController {
             foreach( $item->getPictures() as $picture ){
                 $pictures[] = array(
                     'title' => $picture->getTitle(),
-                    'img-medium' => $picture->getUrl('medium'),
-                    'img-full'   => $picture->getUrl('big')
+                    'imgmedium' => $picture->getUrl('thumb'),
+                    'imgfull'   => $picture->getUrl('big')
                 );
             }
             $datas[] = array(
