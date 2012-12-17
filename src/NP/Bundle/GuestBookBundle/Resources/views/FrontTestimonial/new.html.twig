@@ -1,0 +1,10 @@
+<h2>{{ 'front.testimonial.new.title'|trans([], 'NPGuestBookBundle') }}</h2>
+{{ form_errors(form)}}
+        
+<form action="{{ path('np_guest_book_fronttestimonial_new') }}" method="POST" {{ form_enctype(form) }} >
+    {{ form_row(form.name, {'label': 'front.testimonial.form.label.name'|trans([], 'NPGuestBookBundle') }) }}
+    {{ form_row(form.text, {'label': 'front.testimonial.form.label.text'|trans([], 'NPGuestBookBundle') }) }}
+    {{ form_rest(form) }}
+    <input type="submit" value="{{ 'front.testimonial.form.action.submit'|trans([], 'NPGuestBookBundle') }}" >&nbsp;
+    <a href="{{ path('np_guest_book_fronttestimonial_index') }}" >{{ 'front.testimonial.form.action.back_to_list'|trans([], 'NPGuestBookBundle') }}</a>
+</form>

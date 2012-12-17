@@ -1,0 +1,7 @@
+np_guest_book_fronttestimonial_index:
+    pattern: /
+    defaults: { _controller: NPGuestBookBundle:FrontTestimonial:index }
+    
+np_guest_book_fronttestimonial_new:
+    pattern: /new
+    defaults: { _controller: NPGuestBookBundle:FrontTestimonial:new }

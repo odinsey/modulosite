@@ -1,0 +1,19 @@
+np_guest_book_testimonial_index:
+    pattern: /
+    defaults: { _controller: NPGuestBookBundle:Testimonial:index }
+
+np_guest_book_testimonial_edit:
+    pattern: /{id}/edit
+    defaults: { _controller: NPGuestBookBundle:Testimonial:edit }
+
+np_guest_book_testimonial_delete:
+    pattern: /{id}/delete
+    defaults: { _controller: NPGuestBookBundle:Testimonial:delete }
+      
+np_guest_book_testimonial_groupprocess:
+    pattern: /groupprocess
+    defaults: { _controller: NPGuestBookBundle:Testimonial:groupProcess }
+    
+np_guest_book_testimonial_new:
+    pattern: /new
+    defaults: { _controller: NPGuestBookBundle:Testimonial:new }

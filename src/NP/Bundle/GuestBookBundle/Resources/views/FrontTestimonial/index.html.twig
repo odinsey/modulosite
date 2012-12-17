@@ -1,0 +1,9 @@
+ <a href="{{ path('np_guestbook_fronttestimonial_new') }}" title="{{ 'front.testimonial.index.new'|trans([], 'NPGuestBookBundle') }}">{{ 'front.testimonial.index.new'|trans([], 'NPGuestBookBundle') }}</a>
+{% for testimonial in paginator %}
+    <div>
+        {{ testimonial.name ~ ' ' ~ testimonial.createdat | date('d/m/Y') }}<br>
+        {{ testimonial.text }}
+    </div>
+{% endfor %}
+
+{{ pagination.render()|raw }}

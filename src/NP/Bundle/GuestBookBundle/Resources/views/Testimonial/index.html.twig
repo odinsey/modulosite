@@ -1,0 +1,20 @@
+{% extends 'NPCoreBundle:CRUD:index.html.twig' %}
+
+{% block index_list_head %}
+<thead>
+    <tr>
+        <th class="groupCheckbox"><input type="checkbox" /></th>
+        <th>{{ 'testimonial.index.name'|trans([], 'NPGuestBookBundle') }}</th>
+        <th>{{ 'testimonial.index.text'|trans([], 'NPGuestBookBundle') }}</th>
+        <th>{{ 'testimonial.index.status'|trans([], 'NPGuestBookBundle') }}</th>
+        <th>{{ 'testimonial.index.created_at'|trans([], 'NPGuestBookBundle') }}</th>
+        <th>{{ 'global.index_crud.actions'|trans([], 'NPCoreBundle') }}</th>
+    </tr>
+</thead>
+{% endblock %}
+{% block index_list_item_cols %}
+    <td>{{ entity.name }}</td>
+    <td>{{ entity.text }}</td>
+    <td>{{ ('testimonial.enum.' ~ entity.status)|trans([], 'NPGuestBookBundle') }}</td>
+    <td>{{ entity.createdat | date('d/m/Y') }}</td>
+{% endblock %}

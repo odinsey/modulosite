@@ -40,3 +40,10 @@ np_news_news:
 np_resources_resources:
     resource: "@NPResourcesBundle/Resources/config/routing/resources.yml"
     prefix:   /resources
+np_guest_book_testimonial:
+    resource: "@NPGuestBookBundle/Resources/config/routing/testimonial.yml"
+    prefix:   /testimonial
+np_guest_book_fronttestimonial:
+    resource: "@NPGuestBookBundle/Resources/config/routing/front_testimonial.yml"
+    prefix:   /front_testimonial
+  

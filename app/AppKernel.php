@@ -22,6 +22,7 @@ class AppKernel extends Kernel {
 			new NP\Bundle\GalleryBundle\NPGalleryBundle(),
                         new NP\Bundle\NewsBundle\NPNewsBundle(),
                         new NP\Bundle\ResourcesBundle\NPResourcesBundle(),
+                        new NP\Bundle\GuestBookBundle\NPGuestBookBundle(),
 			new FOS\UserBundle\FOSUserBundle(),
 			new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
 			new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),

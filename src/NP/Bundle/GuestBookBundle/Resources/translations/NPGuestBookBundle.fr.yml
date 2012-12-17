@@ -1,0 +1,53 @@
+testimonial:
+    edit:
+        title: Modification du témoignages : %title%
+    index:
+        title: Liste des témoignages
+        name: Nom
+        text: Message
+        status: Status
+        created_at: Date
+        form_group:
+            delete: Supprimer
+            validate: Valider
+            refuse: Refuser
+    flash:
+        success:
+            edit: Le témoignages a bien été modifié
+            delete: Le témoignages a bien été supprimé
+            group:
+                delete: Les témoignages ont bien été supprimés
+                validate: Les témoignages ont bien été validés
+                cancel: Les témoignages ont bien été refusés
+    enum:
+        pending: En attente
+        validated: Validé
+        refused: Refusé
+    form:
+        label:
+            name: Nom
+            text: Message
+            status: Status
+
+front:
+    testimonial:
+        flash:
+            success:
+                new: Votre témoignage a bien été pris en compte
+        index:
+            new: Ajouter un témoignage
+        form:
+            label:
+                name: Nom
+                text: Message
+            action:
+                submit: Envoyer
+                back_to_list: Retour aux témoignages
+        new:
+            title: Nouveau témoignage
+
+enum:
+    testimonial:
+        pending: En attente
+        validated: Validé
+        refused: Refusé
