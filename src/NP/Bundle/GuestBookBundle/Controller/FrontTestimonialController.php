@@ -61,11 +61,11 @@ class FrontTestimonialController extends Controller {
                     $this->getDoctrine()->getEntityManager()->flush();
 
                     $this->get('session')->setFlash('success', $this->get('translator')->trans(
-                        'front.testimonial.flash.success.new', array('%name%' => $entity), 'NpGuestBookBundle')
+                        'front.testimonial.flash.success.new', array('%name%' => $entity), 'NPGuestBookBundle')
                     );
                 } else {
                     $this->get('session')->setFlash('error', $this->get('translator')->trans(
-                        'front.testimonial.flash.error.new', array('%name%' => $entity), 'NpGuestBookBundle')
+                        'front.testimonial.flash.error.new', array('%name%' => $entity), 'NPGuestBookBundle')
                     );
                 }
         }
