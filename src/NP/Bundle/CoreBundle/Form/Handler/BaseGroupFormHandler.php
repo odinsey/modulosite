@@ -24,7 +24,7 @@ abstract class BaseGroupFormHandler {
 
 	    if (!is_array($ids) || count($ids) <= 0)
 		return false;
-
+            
 	    if ($form->isValid()) {
 		$data = $form->getData();
 
@@ -36,10 +36,12 @@ abstract class BaseGroupFormHandler {
 		}
 
 		$repository = $this->em->getRepository($this->repository_name);
-		if ($data->action == 'delete') {
-		    $repository->deleteGroup($ids_filtered);
-		    return 'delete';
-		}
+		if (method_exists($repository, $data->action.'Group')) {
+		    $repository->{$data->action.'Group'}($ids_filtered);
+		    return $data->action;
+		} else {
+                    throw new \BadMethodCallException('The method '.get_class($repository).'::'.$data->action.'Group doesn\'t exist !');
+                }
 	    }
 	}
 	return false;

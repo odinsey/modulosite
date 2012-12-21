@@ -57,7 +57,25 @@
             <!-- InstanceEndEditable -->
             </h1>
             <!-- InstanceBeginEditable name="Contenu" -->
-            <p>Page en construction</p>
+            <script type="text/javascript">
+                var title_element = 'h2';
+                var desc_element = 'p';
+                var html = '';
+                jQuery(document).ready(function(){
+                    jQuery('#testimonial-form').load('/app.php/testimonial_new');
+                    jQuery.getJSON('/app.php/testimonial.json', function(data){
+                        jQuery.each(data, function(i, testimonial) {
+                            html += '<div class="item">';
+                            html += '<'+title_element+'>'+testimonial['name']+'</'+title_element+'>';
+                            html += '<'+desc_element+'>'+testimonial['text']+'</'+desc_element+'>';
+                            html += '</div>';
+                        });
+                        jQuery('#testimonials').html(html);
+                    });
+                });
+            </script>
+            <div id="testimonial-form"></div>
+            <div id="testimonials"></div>
             <!-- InstanceEndEditable -->
             <br class="clearer" />
         </div>

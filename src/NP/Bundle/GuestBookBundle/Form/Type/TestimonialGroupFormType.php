@@ -7,13 +7,12 @@ use Symfony\Component\Form\FormBuilderInterface;
 
 class TestimonialGroupFormType extends AbstractType {
     public function buildForm(FormBuilderInterface $builder, array $options) {
+        $choices = array(''=>'');
+        foreach ($options['data']->getActions() as $action) {
+            $choices[$action] = 'testimonial.index.form_group.'.$action;
+        }
         $builder->add('action', 'choice', array(
-            'choices'   => array(
-                'none'   => '',
-                'delete' => 'testimonial.index.form_group.delete',
-                'validate' => 'testimonial.index.form_group.validate',
-                'refuse' => 'testimonial.index.form_group.refuse'
-            ),
+            'choices'   => $choices,
             'multiple'  => false,
             'attr' => array('class' => 'medium')
         ));
@@ -21,6 +20,7 @@ class TestimonialGroupFormType extends AbstractType {
     
     public function getDefaultOptions(array $options) {
         return array(
+            'data_class' => 'NP\Bundle\GuestBookBundle\Form\Model\TestimonialGroup',
             'translation_domain' => 'NPGuestBookBundle'
         );
     }

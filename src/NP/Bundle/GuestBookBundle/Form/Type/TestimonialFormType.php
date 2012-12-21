@@ -9,16 +9,23 @@ use NP\Bundle\GuestBookBundle\Enum\StatusEnum;
 class TestimonialFormType extends AbstractType {
 
     public function buildForm(FormBuilderInterface $builder, array $options) {
+        
+        $choices = array(''=>'');
+        foreach (StatusEnum::getValues() as $action) {
+            $choices[$action] = 'testimonial.form.status.'.$action;
+        }
+        
         $builder->add('name')
                 ->add('text')
                 ->add('status', 'choice', array(
-                    'choices' => array_combine(StatusEnum::getValues(), StatusEnum::getValues())
+                    'choices' => $choices
                 ));
     }
 
     public function getDefaultOptions(array $options) {
         return array(
             'data_class' => 'NP\Bundle\GuestBookBundle\Entity\Testimonial',
+            'translation_domain' => 'NPGuestBookBundle'
         );
     }
 

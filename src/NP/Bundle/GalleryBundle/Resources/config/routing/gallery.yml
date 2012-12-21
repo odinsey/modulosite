@@ -1,7 +1,3 @@
-np_gallery_gallery_json_list:
-    pattern:  /gallery.{format}
-    defaults: { _controller: NPGalleryBundle:Gallery:list, _format: json }
-
 np_gallery_gallery_index:
     pattern: /
     defaults: { _controller: NPGalleryBundle:Gallery:index }

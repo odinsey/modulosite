@@ -4,6 +4,7 @@ namespace NP\Bundle\GuestBookBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use NP\Bundle\GuestBookBundle\Enum\StatusEnum;
 
 /**
  * NP\Bundle\GuestBookBundle\Entity\Testimonial
@@ -149,7 +150,7 @@ class Testimonial
     public function __construct()
     {
         $this->created_at = new \DateTime('now');
-        $this->status = \NP\Bundle\GuestBookBundle\Enum\StatusEnum::PENDING;
+        $this->status = StatusEnum::PENDING;
     }
     
     public function __toString()

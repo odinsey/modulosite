@@ -1,0 +1,3 @@
+np_news_news_list_json:
+    pattern:  /news.{format}
+    defaults: { _controller: NPNewsBundle:News:list, _format: json }

@@ -31,12 +31,18 @@ fos_user_change_password:
 np_gallery_gallery:
     resource: "@NPGalleryBundle/Resources/config/routing/gallery.yml"
     prefix:   /gallery
+np_gallery_frontgallery:
+    resource: "@NPGalleryBundle/Resources/config/routing/front_gallery.yml"
+    prefix:   /
 np_gallery_picture:
     resource: "@NPGalleryBundle/Resources/config/routing/picture.yml"
     prefix:   /picture
 np_news_news:
     resource: "@NPNewsBundle/Resources/config/routing/news.yml"
     prefix:   /news
+np_news_frontnews:
+    resource: "@NPNewsBundle/Resources/config/routing/front_news.yml"
+    prefix:   /
 np_resources_resources:
     resource: "@NPResourcesBundle/Resources/config/routing/resources.yml"
     prefix:   /resources
@@ -45,5 +51,5 @@ np_guest_book_testimonial:
     prefix:   /testimonial
 np_guest_book_fronttestimonial:
     resource: "@NPGuestBookBundle/Resources/config/routing/front_testimonial.yml"
-    prefix:   /front_testimonial
+    prefix:   /
   

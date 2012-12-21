@@ -1,10 +1,33 @@
 <h2>{{ 'front.testimonial.new.title'|trans([], 'NPGuestBookBundle') }}</h2>
+{% if app.session.hasFlash('error')
+    or app.session.hasFlash('success') %}
+    {% if app.session.hasFlash('error') %}
+    <div class="alert alert-error">
+        <a class="close" data-dismiss="alert">×</a>
+        {{ app.session.flash('error') }}
+    </div>
+    {% endif %}
+    {% if app.session.hasFlash('success') %}
+    <div class="alert alert-success">
+        <a class="close" data-dismiss="alert">×</a>
+        {{ app.session.flash('success') }}
+    </div>
+    {% endif %}
+{% endif %}
 {{ form_errors(form)}}
         
-<form action="{{ path('np_guest_book_fronttestimonial_new') }}" method="POST" {{ form_enctype(form) }} >
+<form onsubmit="return ajaxSubmit(this);" action="{{ path('np_guest_book_fronttestimonial_new') }}" method="POST" {{ form_enctype(form) }} >
     {{ form_row(form.name, {'label': 'front.testimonial.form.label.name'|trans([], 'NPGuestBookBundle') }) }}
     {{ form_row(form.text, {'label': 'front.testimonial.form.label.text'|trans([], 'NPGuestBookBundle') }) }}
     {{ form_rest(form) }}
     <input type="submit" value="{{ 'front.testimonial.form.action.submit'|trans([], 'NPGuestBookBundle') }}" >&nbsp;
-    <a href="{{ path('np_guest_book_fronttestimonial_index') }}" >{{ 'front.testimonial.form.action.back_to_list'|trans([], 'NPGuestBookBundle') }}</a>
 </form>
+<script type="text/javascript">
+var ajaxSubmit = function(el) {
+    jQuery.post(el.action, jQuery(el).serialize(), function(data) {
+        jQuery(el).parent().html(data);
+    });
+    
+    return false;
+};
+</script>

@@ -41,4 +41,6 @@ security:
         - { path: ^/gallery.json, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/news.json, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/resources.json, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/testimonial.json, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/testimonial_new, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/, role: ROLE_ADMIN }

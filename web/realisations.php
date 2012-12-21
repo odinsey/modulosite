@@ -62,27 +62,21 @@
                 var desc_element = 'p';
                 var html = '';
                 jQuery(document).ready(function(){
-                    jQuery.ajax({
-                        url: 'http://modulosite.nicolas.homeserver/app.php/gallery.json',
-                        context: jQuery('#galleries'),
-                        success: function(string){
-                            jQuery.parseJSON(string);
-                            jQuery.each(string, function(i, gallery) {
-                                html += '<div class="actualite-gauche"><div class="vignette-actualites">';
-                                jQuery.each(gallery['pictures'], function(i, picture) {
-                                   html += '<a href="'+picture['imgfull']+'" title="'+picture['title']+'" rel="shadowbox['+gallery['title']+']"></a>';
-                                   if(i==0){
-                                        html += '<img src="'+picture['imgmedium']+'" alt="'+picture['title']+'" /></div>';
-                                   }
-                                });
-                                html += '</div><div class="actualites-droite">';
-                                html += '<'+title_element+'>'+gallery['title']+'</'+title_element+'>';
-                                html += '<'+desc_element+'>'+gallery['description']+'</'+desc_element+'>';
-                                html += '</div>';
+                    jQuery.getJSON('/app.php/gallery.json', function(data){
+                        jQuery.each(data, function(i, gallery) {
+                            html += '<div class="actualite-gauche"><div class="vignette-actualites">';
+                            jQuery.each(gallery['pictures'], function(i, picture) {
+                               html += '<a href="'+picture['imgfull']+'" title="'+picture['title']+'" rel="shadowbox['+gallery['title']+']"></a>';
+                               if(i==0){
+                                    html += '<img src="'+picture['imgmedium']+'" alt="'+picture['title']+'" /></div>';
+                               }
                             });
-                            console.log(html);
-                            jQuery('#galleries').html(html);
-                        }
+                            html += '</div><div class="actualites-droite">';
+                            html += '<'+title_element+'>'+gallery['title']+'</'+title_element+'>';
+                            html += '<'+desc_element+'>'+gallery['description']+'</'+desc_element+'>';
+                            html += '</div>';
+                        });
+                        jQuery('#galleries')).html(html);
                     });
                 });
             </script>

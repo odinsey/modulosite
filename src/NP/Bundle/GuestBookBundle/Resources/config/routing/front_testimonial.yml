@@ -1,7 +1,6 @@
-np_guest_book_fronttestimonial_index:
-    pattern: /
-    defaults: { _controller: NPGuestBookBundle:FrontTestimonial:index }
-    
+np_guest_book_fronttestimonial_list_json:
+    pattern:  /testimonial.{format}
+    defaults: { _controller: NPGuestBookBundle:FrontTestimonial:list, _format: json }
 np_guest_book_fronttestimonial_new:
-    pattern: /new
+    pattern:  /testimonial_new
     defaults: { _controller: NPGuestBookBundle:FrontTestimonial:new }

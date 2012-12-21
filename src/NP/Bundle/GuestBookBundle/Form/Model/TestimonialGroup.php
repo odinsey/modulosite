@@ -10,8 +10,7 @@ class TestimonialGroup {
      */
     public $action;
     
-    public static function getActions()
-    {
-        return StatusEnum::getValues();
+    public static function getActions() {
+        return array_merge(array('delete'), StatusEnum::getValues());
     }
 }

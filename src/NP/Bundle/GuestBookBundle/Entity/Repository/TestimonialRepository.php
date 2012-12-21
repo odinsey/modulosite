@@ -50,7 +50,19 @@ class TestimonialRepository extends EntityRepository {
         $this->_em->flush();
     }
 
-    public function validateGroup($id) {
+    public function pendingGroup($id) {
+        $qb = $this->createQueryBuilder('t');
+
+        $qb->update('NPGuestBookBundle:Testimonial', 't')
+                ->set('t.status', $qb->expr()->literal(StatusEnum::PENDING))
+                ->where($qb->expr()->in('t.id', $id))
+                ->getQuery()
+                ->execute();
+
+        $this->_em->flush();
+    }
+
+    public function validatedGroup($id) {
         $qb = $this->createQueryBuilder('t');
 
         $qb->update('NPGuestBookBundle:Testimonial', 't')
@@ -62,7 +74,7 @@ class TestimonialRepository extends EntityRepository {
         $this->_em->flush();
     }
 
-    public function refuseGroup($id) {
+    public function refusedGroup($id) {
         $qb = $this->createQueryBuilder('t');
 
         $qb->update('NPGuestBookBundle:Testimonial', 't')

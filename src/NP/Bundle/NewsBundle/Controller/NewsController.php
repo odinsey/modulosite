@@ -45,5 +45,9 @@ class NewsController extends BaseAdminController {
 
         return $this->render('::base.' . $format . '.twig', array('data' => $json));
     }
+    
+    public function formAction() {
+        
+    }
 
 }

@@ -62,27 +62,21 @@
                 var desc_element = 'p';
                 var html = '';
                 jQuery(document).ready(function(){
-                    jQuery.ajax({
-                        url: '/app.php/news.json',
-                        context: jQuery('#news'),
-                        success: function(string){
-                            jQuery.parseJSON(string);
-                            jQuery.each(string, function(i, gallery) {
-                                html += '<div class="actualite-gauche"><div class="vignette-actualites">';
-                                jQuery.each(gallery['pictures'], function(i, picture) {
-                                   html += '<a href="'+picture['imgfull']+'" title="'+picture['title']+'" rel="shadowbox['+gallery['title']+']"></a>';
-                                   if(i==0){
-                                        html += '<img src="'+picture['imgmedium']+'" alt="'+picture['title']+'" /></div>';
-                                   }
-                                });
-                                html += '</div><div class="actualites-droite">';
-                                html += '<'+title_element+'>'+gallery['title']+'</'+title_element+'>';
-                                html += '<'+desc_element+'>'+gallery['description']+'</'+desc_element+'>';
-                                html += '</div>';
+                    jQuery.getJSON('/app.php/news.json', function(data){
+                        jQuery.each(data, function(i, gallery) {
+                            html += '<div class="actualite-gauche"><div class="vignette-actualites">';
+                            jQuery.each(gallery['pictures'], function(i, picture) {
+                               html += '<a href="'+picture['imgfull']+'" title="'+picture['title']+'" rel="shadowbox['+gallery['title']+']"></a>';
+                               if(i==0){
+                                    html += '<img src="'+picture['imgmedium']+'" alt="'+picture['title']+'" /></div>';
+                               }
                             });
-                            console.log(html);
-                            jQuery('#news').html(html);
-                        }
+                            html += '</div><div class="actualites-droite">';
+                            html += '<'+title_element+'>'+gallery['title']+'</'+title_element+'>';
+                            html += '<'+desc_element+'>'+gallery['description']+'</'+desc_element+'>';
+                            html += '</div>';
+                        });
+                        jQuery('#news').html(html);
                     });
                 });
             </script>
