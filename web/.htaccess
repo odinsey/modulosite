@@ -1,0 +1,14 @@
+SetEnv PHP_VER 5_4
+SetEnv REGISTER_GLOBALS 0
+
+<IfModule mod_rewrite.c>
+    Options +FollowSymlinks
+    RewriteEngine On
+
+    # Explicitly disable rewriting for front controllers
+
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^app.php - [L]
+</IfModule>
+
+ErrorDocument 404 http://www.coraloisirs.com/index.php

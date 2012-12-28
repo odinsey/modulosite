@@ -77,6 +77,7 @@
                             html += '</div>';
                         });
                         jQuery('#news').html(html);
+                        Shadowbox.init({ skipSetup: true }); Shadowbox.setup();
                     });
                 });
             </script>

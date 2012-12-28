@@ -9,7 +9,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use NP\Bundle\CoreBundle\Util\Urlizer;
 use Symfony\Component\Filesystem\Filesystem;
-use Imagine\Imagick\Imagine;
+use Imagine\Gd\Imagine;
 use Imagine\Image\Box;
 use Imagine\Image\ImageInterface;
 
@@ -303,7 +303,7 @@ use TimestampableEntity;
 
     protected function getUploadRootDir() {
 	// the absolute directory path where uploaded documents should be saved
-	return __DIR__ . '/../../../../../web' . $this->getUploadDir();
+	return __DIR__ . '/../../../../../www' . $this->getUploadDir();
     }
 
     protected function getUploadDir() {

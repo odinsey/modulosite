@@ -76,7 +76,8 @@
                             html += '<'+desc_element+'>'+gallery['description']+'</'+desc_element+'>';
                             html += '</div>';
                         });
-                        jQuery('#galleries')).html(html);
+                        jQuery('#galleries').html(html);
+                        Shadowbox.init({ skipSetup: true }); Shadowbox.setup();
                     });
                 });
             </script>
