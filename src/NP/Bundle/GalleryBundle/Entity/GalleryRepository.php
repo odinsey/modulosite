@@ -11,7 +11,7 @@ use Doctrine\ORM\EntityRepository;
  * repository methods below.
  */
 class GalleryRepository extends EntityRepository {
-    
+
     public function deleteOne($id)
     {
         $this->deleteGroup(array($id));

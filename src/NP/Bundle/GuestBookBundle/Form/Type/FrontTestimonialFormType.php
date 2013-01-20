@@ -17,9 +17,10 @@ class FrontTestimonialFormType extends AbstractType
     {
         return array(
             'data_class' => 'NP\Bundle\GuestBookBundle\Entity\Testimonial',
+            'csrf_protection' => false
         );
     }
-    
+
     public function getName()
     {
         return 'np_fronttestimonial';

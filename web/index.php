@@ -61,7 +61,7 @@
                 var title_element = 'h2';
                 var desc_element = 'p';
                 var html = '';
-                jQuery(document).ready(function(){
+                jQuery(window).load(function(){
                     jQuery.getJSON('/app.php/news.json', function(data){
                         jQuery.each(data, function(i, gallery) {
                             html += '<div class="actualite-gauche"><div class="vignette-actualites">';

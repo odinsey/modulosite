@@ -11,6 +11,7 @@ class NewsController extends BaseAdminController {
 
     protected $doctrine_namespace = "NPNewsBundle:News";
     protected $template_new = 'NPGalleryBundle:CRUD:new.html.twig';
+    protected $template_index = 'NPNewsBundle:CRUD:index.html.twig';
     protected $template_edit = 'NPGalleryBundle:CRUD:edit.html.twig';
 
     public function listAction() {
@@ -44,10 +45,6 @@ class NewsController extends BaseAdminController {
         $json = $serializer->serialize($datas, 'json');
 
         return $this->render('::base.' . $format . '.twig', array('data' => $json));
-    }
-    
-    public function formAction() {
-        
     }
 
 }

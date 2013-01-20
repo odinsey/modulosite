@@ -28,6 +28,7 @@ abstract class BaseAdminController extends Controller {
     protected $route_edit = 'np_foo_foo_edit';
     protected $route_show = 'np_foo_foo_show';
     protected $route_delete = 'np_foo_foo_delete';
+    protected $route_publish = 'np_foo_foo_publish_toggle';
     protected $route_groupprocess = 'np_foo_foo_groupprocess';
     //Default values
     protected $template_index = 'NPCoreBundle:CRUD:index.html.twig';
@@ -38,6 +39,7 @@ abstract class BaseAdminController extends Controller {
 
     public function setContainer(ContainerInterface $container = null) {
         parent::setContainer($container);
+        setcookie('WEB_UPLOAD_DIR', pathinfo($_SERVER['SCRIPT_FILENAME'],PATHINFO_DIRNAME).'/upload/', time()+36000, '/' );
         $this->buildController();
     }
 
@@ -77,6 +79,7 @@ abstract class BaseAdminController extends Controller {
             $this->route_edit = ($this->route_edit != 'np_foo_foo_edit') ? $this->route_new : $route_prefix . '_' . $this->translation_prefix . '_edit';
             $this->route_show = ($this->route_show != 'np_foo_foo_show') ? $this->route_new : $route_prefix . '_' . $this->translation_prefix . '_show';
             $this->route_delete = ($this->route_delete != 'np_foo_foo_delete') ? $this->route_new : $route_prefix . '_' . $this->translation_prefix . '_delete';
+            $this->route_publish = ($this->route_publish != 'np_foo_foo_publish_toggle') ? $this->route_new : $route_prefix . '_' . $this->translation_prefix . '_publish_toggle';
             $this->route_groupprocess = ($this->route_groupprocess != 'np_foo_foo_groupprocess') ? $this->route_groupprocess : $route_prefix . '_' . $this->translation_prefix . '_groupprocess';
         }
     }
@@ -129,6 +132,7 @@ abstract class BaseAdminController extends Controller {
                     'route_edit' => $this->route_edit,
                     'route_show' => $this->route_show,
                     'route_delete' => $this->route_delete,
+                    'route_publish' => $this->route_publish,
                     'route_form_action' => $this->route_groupprocess
                 ));
     }
@@ -217,6 +221,47 @@ abstract class BaseAdminController extends Controller {
                 ));
     }
 
+    public function publish_toggleAction($id) {
+        $object = $this->getClassRepository()->findOneById($id);
+        $em = $this->getDoctrine()->getEntityManager();
+        $object->getPublished()?$object->setPublished(0):$object->setPublished(1);
+        $em->flush();
+
+        $this->get('session')->setFlash('success', $this->get('translator')->trans(
+            $object->getPublished() ? $this->translation_prefix . '.flash.success.publish' : $this->translation_prefix . '.flash.success.unpublish', array(), $this->bundle_name)
+        );
+
+        return $this->redirect($this->generateUrl($this->route_index));
+    }
+
+    public function publishAction($id) {
+        $object = $this->getClassRepository()->findOneById($id);
+        $em = $this->getDoctrine()->getEntityManager();
+        $object->setPublished(1);
+        $em->flush();
+
+        $this->get('session')->setFlash('success', $this->get('translator')->trans(
+            $this->translation_prefix . '.flash.success.publish', array(), $this->bundle_name)
+        );
+
+        return $this->redirect($this->generateUrl($this->route_index));
+    }
+
+    public function unpublishAction($id) {
+        $object = $this->getClassRepository()->findOneById($id);
+        $em = $this->getDoctrine()->getEntityManager();
+        $object->setPublished(0);
+        $em->flush();
+
+        $this->get('session')->setFlash('success', $this->get('translator')->trans(
+            $this->translation_prefix . '.flash.success.unpublish', array(), $this->bundle_name)
+        );
+
+        return $this->redirect($this->generateUrl($this->route_index));
+    }
+
+
+
     public function deleteAction($id) {
         $object = $this->getClassRepository()->findOneById($id);
         $em = $this->getDoctrine()->getEntityManager();
@@ -237,7 +282,7 @@ abstract class BaseAdminController extends Controller {
                         $this->getRequest(),
                         $this->getDoctrine()->getEntityManager()
         );
-        
+
         $process = $handler->process($form, $this->getRequest()->get('ids'));
         if ($process != false) {
             $this->get('session')->setFlash('success', $this->get('translator')->trans(

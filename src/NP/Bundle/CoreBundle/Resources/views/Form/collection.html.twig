@@ -8,7 +8,7 @@
                 {{ form_errors(form) }}
                 {% for child in form %}
                     <div class="collection-field-row" data-prop="">
-						{{ form_row(child) }}
+			{{ form_row(child) }}
                         {% if allow_delete is defined and allow_delete %}
                         <a href="#" class="delete-collection-row btn">
                             {{ 'global.form_action.delete' | trans([], 'NPCoreBundle') }}

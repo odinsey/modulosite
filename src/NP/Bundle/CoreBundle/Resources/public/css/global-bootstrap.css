@@ -5271,7 +5271,7 @@ input[type=file] {
   vertical-align: middle;
 }
 .table .items-actions {
-  width: 110px;
+  width: 220px;
   padding: 10px 6px;
   text-align: center;
 }
@@ -5652,7 +5652,7 @@ h6 {
 }
 /**
  * item's list | Template Medium
- * 
+ *
  * <div|ol|ul class="list-items medium">
  *     <div|li class="item">
  *         <div class="item-meta">
@@ -5707,7 +5707,7 @@ h6 {
 }
 /**
  * item's list | Template Medium
- * 
+ *
  * BSky/Bundle/BlogBundle
  */
 .comment-list-items.list-items.medium .item .item-meta a.name {

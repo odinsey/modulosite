@@ -30,6 +30,7 @@ use TimestampableEntity;
 
     protected static $FILE_TYPES = array(
 	'small' => array('width' => 90, 'height' => 78, 'thumbnail_type' => ImageInterface::THUMBNAIL_OUTBOUND),
+	'thumb1' => array('width' => 130, 'height' => 92, 'thumbnail_type' => ImageInterface::THUMBNAIL_OUTBOUND),
 	'thumb' => array('width' => 150, 'height' => 113, 'thumbnail_type' => ImageInterface::THUMBNAIL_OUTBOUND),
 	'medium' => array('width' => 233, 'height' => 155, 'thumbnail_type' => ImageInterface::THUMBNAIL_OUTBOUND),
 	'big' => array('width' => 1024, 'height' => 768, 'thumbnail_type' => ImageInterface::THUMBNAIL_INSET)
@@ -47,8 +48,7 @@ use TimestampableEntity;
     /**
      * @var string
      *
-     * @ORM\Column(name="title", type="string", length=255)
-     * @Assert\NotBlank
+     * @ORM\Column(name="title", type="string", length=255, nullable=true)
      */
     private $title;
 
@@ -209,7 +209,7 @@ use TimestampableEntity;
     }
 
     public function getFileName($type) {
-	return sprintf('img-%s-%d.'.$this->extension, $type, $this->getId());
+	return sprintf('img-%s-%d.%s', $type, $this->getId(),$this->getExtension());
     }
 
     public function getFolderName() {

@@ -4,13 +4,13 @@
     {% block fos_user_content %}
     <div id="loginWrapper">
         <div id="loginWrapper">
-            <h1>Générateur de site</h1>
+            <h1>{{ 'site.title'|trans({}, 'NPCoreBundle') }}</h1>
         </div>
         <div class="container globalContainer loginContainer">
             {% if error %}
-            <div class="error">{{ error }}</div>
+            <div class="error">{{ error|trans({}, 'FOSUserBundle') }}</div>
             {% endif %}
-            <form class="form-horizontal" action="{{ path("fos_user_security_check") }}" method="POST">	
+            <form class="form-horizontal" action="{{ path("fos_user_security_check") }}" method="POST">
 		<input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
                 <div class="control-group">
                     <label class="control-label" for="username">{{ 'login.label.username'|trans({}, 'NPCoreBundle') }}</label>

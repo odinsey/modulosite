@@ -24,6 +24,12 @@ np_news_news_delete:
     requirements:
       id: \d+
 
+np_news_news_publish_toggle:
+    pattern: /{id}/publish_toggle
+    defaults: { _controller: NPNewsBundle:News:publish_toggle }
+    requirements:
+      id: \d+
+
 np_news_news_groupprocess:
     pattern: /groupprocess
     defaults: { _controller: NPNewsBundle:News:groupProcess }

@@ -47,14 +47,13 @@ use TimestampableEntity;
     /**
      * @var string
      *
-     * @ORM\Column(name="title", type="string", length=255)
-     * @Assert\NotBlank
+     * @ORM\Column(name="title", type="string", length=255, nullable=true)
      */
     private $title;
 
     /**
      * @Gedmo\SortablePosition
-     * @ORM\Column(name="position", type="integer")
+     * @ORM\Column(name="position", type="integer", nullable=true)
      */
     private $position;
 
@@ -91,7 +90,7 @@ use TimestampableEntity;
      */
 
     public function __toString() {
-	return $this->title;
+	return $this->title ? $this->title : $this->id;
     }
 
     /**
@@ -209,7 +208,7 @@ use TimestampableEntity;
     }
 
     public function getFileName($type) {
-	return sprintf('img-%s-%d.'.$this->extension, $type, $this->getId());
+	return sprintf('img-%s-%d.%s', $type, $this->getId(),$this->getExtension());
     }
 
     public function getFolderName() {

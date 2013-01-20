@@ -119,8 +119,8 @@ class Gallery {
      * @param \NP\Bundle\GalleryBundle\Entity\Picture $picture
      */
     public function addPicture(Picture $picture) {
-	if (!$this->pictures->contains($picture)) {
-	    $picture->setParent($this);
+	if (!$this->pictures->contains($picture) && $picture->getFile() ) {
+            $picture->setParent($this);
 	    $this->pictures->add($picture);
 	}
     }

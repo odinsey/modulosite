@@ -162,7 +162,7 @@ use TimestampableEntity;
      * @param \NP\Bundle\NewsBundle\Entity\Picture $picture
      */
     public function addPicture(\NP\Bundle\NewsBundle\Entity\Picture $picture) {
-        if (!$this->pictures->contains($picture)) {
+        if (!$this->pictures->contains($picture) && $picture->getFile()) {
             $picture->setParent($this);
             $this->pictures->add($picture);
         }

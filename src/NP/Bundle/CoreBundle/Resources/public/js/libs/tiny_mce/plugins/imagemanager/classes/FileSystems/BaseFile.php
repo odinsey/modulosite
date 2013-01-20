@@ -4,7 +4,7 @@
  *
  * @package MCFileManager.filesystems
  * @author Moxiecode
- * @copyright Copyright © 2005, Moxiecode Systems AB, All rights reserved.
+ * @copyright Copyright ï¿½ 2005, Moxiecode Systems AB, All rights reserved.
  */
 
 // File type contstants
@@ -128,7 +128,7 @@ class Moxiecode_BaseFile {
 	 */
 	function canRead() {
 	}
-	
+
 	/**
 	 * Returns true if the files is writable.
 	 *
@@ -181,7 +181,7 @@ class Moxiecode_BaseFile {
 	}
 
 	/**
-	 * Lists the file as an tree and calls the specified MCE_FileTreeHandler instance on each file. 
+	 * Lists the file as an tree and calls the specified MCE_FileTreeHandler instance on each file.
 	 *
 	 * @param MCE_FileTreeHandler &$file_tree_handler MCE_FileTreeHandler to invoke on each file.
 	 */
@@ -254,7 +254,7 @@ class Moxiecode_BaseFile {
 	 * @param String $mode Mode to open file by, r, rb, w, wb etc.
 	 * @return FileStream File stream implementation for the file system.
 	 */
-	function &open($mode = 'rb') {
+	function open($mode = 'rb') {
 	}
 
 	/**

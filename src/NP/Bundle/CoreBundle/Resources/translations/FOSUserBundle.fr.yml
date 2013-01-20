@@ -1,4 +1,4 @@
-'Bad credentials': 'Nom d''utilisateur ou mot de passe incorrect'
+"Bad credentials": Nom d'utilisateur ou mot de passe incorrect
 group.edit.submit: 'Mettre à jour le groupe'
 group.show.name: 'Nom du groupe'
 group.new.submit: 'Créer le groupe'

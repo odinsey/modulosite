@@ -39,14 +39,17 @@ jQuery(document).ready(function() {
 				mode: "textareas",
 				theme: "advanced",
 				language : "fr",
-				theme_advanced_buttons1: "mylistbox,mysplitbutton,bold,italic,underline,separator,strikethrough,justifyleft,justifycenter,justifyright,justifyfull,bullist,numlist,undo,redo,link,unlink,anchor,image,cleanup,code",
+				theme_advanced_buttons1: "mylistbox,mysplitbutton,bold,italic,underline,separator,strikethrough,justifyleft,justifycenter,justifyright,justifyfull,bullist,numlist,sub,sup,undo,redo,link,unlink,anchor,image,cleanup,code",
 				theme_advanced_buttons2: "",
 				theme_advanced_buttons3: "",
 				theme_advanced_toolbar_location: "top",
 				theme_advanced_toolbar_align: "left",
 				theme_advanced_statusbar_location: "bottom",
-				plugins: "imagemanager,advimage,advlink,fullscreen",
+				plugins: "advlink,pagebreak,iespell,paste,xhtmlxtras,fullscreen",
 				theme_advanced_buttons1_add: "fullscreen",
+				apply_source_formatting : true,
+                                paste_remove_styles: true,
+                                doctype : '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">',
 				width : "600",
 				height : "300"
 			};
@@ -54,7 +57,7 @@ jQuery(document).ready(function() {
 				script_url: "/bundles/npcore/js/libs/tiny_mce/tiny_mce.js",
 				theme: "advanced",
 				language : "fr",
-				plugins: "imagemanager,pagebreak,style,layer,table,save,advhr,advimage,advlink,emotions,iespell,inlinepopups,insertdatetime,preview,media,searchreplace,print,contextmenu,paste,directionality,fullscreen,noneditable,visualchars,nonbreaking,xhtmlxtras,template",
+				plugins: "pagebreak,style,layer,table,save,advhr,advimage,advlink,emotions,iespell,inlinepopups,insertdatetime,preview,media,searchreplace,print,contextmenu,paste,directionality,fullscreen,noneditable,visualchars,nonbreaking,xhtmlxtras,template",
 				theme_advanced_buttons1: "bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,formatselect,fontselect,fontsizeselect,cite,abbr,acronym",
 				theme_advanced_buttons2: "bullist,numlist,|,outdent,indent,blockquote,|,undo,redo,|,link,unlink,anchor,image,cleanup,code,|,forecolor,backcolor,|,charmap,emotions,iespell,media,advhr",
 				theme_advanced_buttons3: "tablecontrols,|,hr,removeformat,visualaid,|,sub,sup,del,ins,|,ltr,rtl",
@@ -62,6 +65,9 @@ jQuery(document).ready(function() {
 				theme_advanced_toolbar_align: "left",
 				theme_advanced_statusbar_location: "bottom",
 				theme_advanced_resizing: true,
+                                apply_source_formatting : true,
+                                paste_remove_styles: true,
+                                doctype : '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">',
 				width : "600",
 				height : "300"
 			};
@@ -403,7 +409,9 @@ jQuery(document).ready(function() {
 
         jQuery('.add-collection-row', $c.parent()).click(function(e) {
             e.preventDefault();
-            initAllTiny(add_row());
+            if( jQuery('#np_gallery_gallery_pictures input[type=file]').last().val() != '' ){
+                initAllTiny(add_row());
+            }
         });
 
         jQuery('.delete-collection-row', $c.parent()).click(function(e) {

@@ -32,7 +32,7 @@
 
         // General filesystem options
         $mcImageManagerConfig['filesystem'] = "Moxiecode_LocalFileImpl";
-        $mcImageManagerConfig['filesystem.path'] = $_COOKIE['WEB_UPLOAD_DIR']; // absolute or relative from this script path, optional.
+        $mcImageManagerConfig['filesystem.path'] = ''; // absolute or relative from this script path, optional.
         $mcImageManagerConfig['filesystem.rootpath'] = $_COOKIE['WEB_UPLOAD_DIR']; // absolute or relative from this script path, required.
         $mcImageManagerConfig['filesystem.datefmt'] = "Y-m-d H:i";
         $mcImageManagerConfig['filesystem.include_directory_pattern'] = '';

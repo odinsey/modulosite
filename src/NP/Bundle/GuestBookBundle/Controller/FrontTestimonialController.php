@@ -17,7 +17,7 @@ class FrontTestimonialController extends Controller {
     private function getClassRepository() {
         return $this->getDoctrine()->getRepository('NPGuestBookBundle:Testimonial');
     }
-    
+
     public function listAction() {
         $repository = $this->getClassRepository();
         $request = $this->getRequest();
@@ -39,20 +39,20 @@ class FrontTestimonialController extends Controller {
 
         $serializer = new Serializer(array(new GetSetMethodNormalizer()), array('json' => new JsonEncoder()));
         $json = $serializer->serialize($datas, 'json');
-        
+
         return $this->render('::base.' . $format . '.twig', array('data' => $json));
     }
-    
-    /**
-     * 
-     * @Template()
-     */
+
+	/*
+	 *
+	 *@Template()
+	 */
     public function newAction() {
-        
+
         $entity = new Testimonial();
 
-	$form = $this->createForm(new FrontTestimonialFormType($entity));
-        
+		$form = $this->createForm(new FrontTestimonialFormType($entity));
+
         if($this->getRequest()->isMethod('POST')){
                 $form->bindRequest($this->getRequest());
 
@@ -63,16 +63,31 @@ class FrontTestimonialController extends Controller {
                     $this->get('session')->setFlash('success', $this->get('translator')->trans(
                         'front.testimonial.flash.success.new', array('%name%' => $entity), 'NPGuestBookBundle')
                     );
+					$message = \Swift_Message::newInstance()
+					        ->setSubject('Vous avez un nouveau témoignage sur votre livre d\'or')
+					        ->setFrom('postmaster@coraloisirs.fr')
+					        ->setTo('nicolas@pajon.net')
+					        ->setBody(
+					            $this->renderView(
+					                '::email.html.twig',
+                                                        array(
+                                                            'name' => $form->getData()->getName(),
+                                                            'message' => nl2br($form->getData()->getText()),
+                                                            'url' => str_replace('testimonial_new', 'testimonial' , $_SERVER['SCRIPT_URI']).'/'
+                                                        )
+					            ),'text/html','utf-8'
+					        )
+                                                ->setCc('alain@atelier-45.fr');
+					$this->get('mailer')->send($message);
+
+                    return $this->redirect($this->getRequest()->headers->get('referer').'?confirm=1');
                 } else {
                     $this->get('session')->setFlash('error', $this->get('translator')->trans(
                         'front.testimonial.flash.error.new', array('%name%' => $entity), 'NPGuestBookBundle')
                     );
+                    return $this->redirect($this->getRequest()->headers->get('referer').'?confirm=0');
                 }
         }
-
-	return array(
-            'form' => $form->createView()
-        );
     }
 
 }

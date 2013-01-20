@@ -13,7 +13,8 @@ class NewsGroup {
     {
         return array(
             'none',
-            'published',
+            'publish',
+            'unpublish',
             'delete'
         );
     }

@@ -5,8 +5,8 @@ namespace NP\Bundle\CoreBundle\Form\Extension\Type;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class RichEditorType extends TextareaType
-{   
-	
+{
+
 	/**
      * {@inheritdoc}
      */
@@ -18,7 +18,7 @@ class RichEditorType extends TextareaType
     	$parent_options['attr']['data-rich-editor-theme'] = 'simple';
         return $parent_options;
     }
-	
+
     /**
      * {@inheritdoc}
      */

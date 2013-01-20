@@ -28,4 +28,27 @@ class NewsRepository extends EntityRepository {
 
         $this->_em->flush();
     }
+
+    public function publishGroup($id) {
+        $qb = $this->createQueryBuilder('n');
+
+        $qb->update('NPNewsBundle:News', 'n')
+                ->set('n.published', 1)
+                ->where($qb->expr()->in('n.id', $id))
+                ->getQuery()
+                ->execute();
+
+        $this->_em->flush();
+    }
+
+    public function unpublishGroup($id) {
+        $qb = $this->createQueryBuilder('n');
+        $qb->update('NPNewsBundle:News', 'n')
+                ->set('n.published', 0)
+                ->where($qb->expr()->in('n.id', $id))
+                ->getQuery()
+                ->execute();
+
+        $this->_em->flush();
+    }
 }
